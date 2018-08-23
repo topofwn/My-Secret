@@ -18,8 +18,9 @@ package com.example.kos.mysecrect.ui.base;
 
 import android.support.annotation.StringRes;
 
-import com.dienquang.shop.apollo.utils.AlertType;
-import com.dienquang.shop.apollo.utils.MessageType;
+
+import com.example.kos.mysecrect.utils.AlertType;
+import com.example.kos.mysecrect.utils.MessageType;
 
 
 /**

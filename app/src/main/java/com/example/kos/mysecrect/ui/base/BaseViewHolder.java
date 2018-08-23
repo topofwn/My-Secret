@@ -26,6 +26,7 @@ import android.view.View;
 
 
 
+
 public abstract class BaseViewHolder<PresenterType extends MVPPresenter> extends RecyclerView.ViewHolder {
 
     public BaseViewHolder(View itemView) {

@@ -4,12 +4,14 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.example.kos.mysecrect.utils.OGILVYLog;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.snappydb.DB;
 import com.snappydb.SnappyDB;
 import com.snappydb.SnappydbException;
 
 import java.io.Serializable;
 
+import static com.example.kos.mysecrect.data.snappy.SnapKey.MY_SNAPPY_KEY_FIREBASE_INSTANCE;
 
 
 /**
@@ -31,7 +33,7 @@ public class MySnappyImpl implements MySnappyDB {
     private MySnappyImpl(Context application) {
         if (snappydb == null) {
             try {
-                snappydb = new SnappyDB.Builder(application).name("Apollo").build();
+                snappydb = new SnappyDB.Builder(application).name("MySecret").build();
             } catch (SnappydbException e) {
                 OGILVYLog.l(e);
             }
@@ -66,6 +68,7 @@ public class MySnappyImpl implements MySnappyDB {
         }
     }
 
-      }
+
+}
 
 

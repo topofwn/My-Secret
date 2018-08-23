@@ -6,5 +6,5 @@ package com.example.kos.mysecrect.data.snappy;
 
 public class SnapKey {
     //============= KEY ====================
-
+    static final String MY_SNAPPY_KEY_FIREBASE_INSTANCE = "MY_SNAPPY_KEY_FIREBASE_INSTANCE";
 }

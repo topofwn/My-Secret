@@ -14,12 +14,14 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
-import com.dienquang.shop.apollo.R;
-import com.dienquang.shop.apollo.utils.AlertType;
-import com.dienquang.shop.apollo.utils.MessageType;
-import com.dienquang.shop.apollo.utils.StringUtils;
-import com.dienquang.shop.apollo.utils.SystemUtils;
-import com.dienquang.shop.apollo.utils.UIUtils;
+
+import com.example.kos.mysecrect.R;
+import com.example.kos.mysecrect.utils.AlertType;
+import com.example.kos.mysecrect.utils.MessageType;
+import com.example.kos.mysecrect.utils.StringUtils;
+import com.example.kos.mysecrect.utils.SystemUtils;
+import com.example.kos.mysecrect.utils.UIUtils;
+
 
 
 public abstract class BaseActivity extends AppCompatActivity
@@ -121,7 +123,7 @@ public abstract class BaseActivity extends AppCompatActivity
                             builder.setTitle(StringUtils.getString(getApplicationContext(), R.string.some_error));
                             break;
                         case SUCCESS:
-                            builder.setTitle(StringUtils.getString(getApplicationContext(), R.string.congrats));
+                            builder.setTitle(StringUtils.getString(getApplicationContext(), R.string.some_error));
                             break;
                     }
                     builder.setMessage(message)

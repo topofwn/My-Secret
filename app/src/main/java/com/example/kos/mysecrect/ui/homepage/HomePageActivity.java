@@ -44,7 +44,7 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void initData() {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     }
 
     @Override

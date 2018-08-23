@@ -7,9 +7,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
-import com.dienquang.shop.apollo.utils.AlertType;
-import com.dienquang.shop.apollo.utils.MessageType;
-import com.dienquang.shop.apollo.utils.StringUtils;
+import com.example.kos.mysecrect.utils.AlertType;
+import com.example.kos.mysecrect.utils.MessageType;
+import com.example.kos.mysecrect.utils.StringUtils;
 
 public abstract class BaseFragment extends Fragment implements MVPView {
 
