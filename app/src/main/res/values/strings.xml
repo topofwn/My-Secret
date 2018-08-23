@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">MySecrect</string>
     <string name="some_error">Some error occured</string>
-
+    <string name="press_to_generate">Press below button to generate</string>
 </resources>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/energy_mode_end"
+    >
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/tool_bar" />
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:background="@color/white"
+        android:id="@+id/txtKey"
+        android:textColor="@color/black"
+        android:textSize="19dp"
+        android:hint="@string/press_to_generate"
+        android:gravity="center"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/txtKey"
+        android:id="@+id/digitField"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:padding="4dp"
+        android:layout_centerInParent="true"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Number of digits:"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            />
+        <EditText
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:id="@+id/edtDigit"
+            android:layout_marginLeft="15dp"
+            android:gravity="center"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:background="@color/white"
+            />
+    </LinearLayout>
+    <Button
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/digitField"
+        android:id="@+id/btnGenerate"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/bg_button_change_state"
+        android:text="Generate"
+        android:padding="3dp"
+        android:textSize="17dp"
+        android:textColor="@color/white"
+
+        />
+    <Button
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:id="@+id/btnSaveKey"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/btnGenerate"
+        android:background="@drawable/bg_button_change_state"
+        android:layout_marginTop="20dp"
+        android:padding="3dp"
+        android:text="Save this key"
+        android:textSize="17dp"
+        android:textColor="@color/white"
+        />
+</RelativeLayout>
