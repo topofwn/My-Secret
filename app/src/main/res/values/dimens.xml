@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Custom button value -->
+    <dimen name="default_custom_button_drawable_padding">3dp</dimen>
+    <dimen name="default_custom_button_shadow_height">1dp</dimen>
+    <dimen name="default_custom_button_conner_radius">0dp</dimen>
+    <dimen name="default_custom_button_border_width">0dp</dimen>
+    <dimen name="default_custom_button_padding_start">10dp</dimen>
+    <dimen name="default_custom_button_padding_end">10dp</dimen>
+    <dimen name="default_custom_button_padding_top">0dp</dimen>
+    <dimen name="default_custom_button_padding_bottom">0dp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="text_size_xxsmall">14sp</dimen>
+    <dimen name="text_size_xxxsmall">16sp</dimen>
+    <dimen name="text_size_xxxxsmall">18sp</dimen>
+    <dimen name="text_size_normal">16sp</dimen>
+    <dimen name="text_size_xnormal">20sp</dimen>
+    <dimen name="text_size_xxnormal">25sp</dimen>
+    <dimen name="text_size_large">30sp</dimen>
+
+    <dimen name="padding_small">5dp</dimen>
+    <dimen name="padding_normal">10dp</dimen>
+    <dimen name="padding_xnormal">15dp</dimen>
+    <dimen name="padding_large">20dp</dimen>
+    <dimen name="padding_xlarge">25dp</dimen>
+    <dimen name="padding_xxlarge">30dp</dimen>
+    <dimen name="image_size_very_small">30dp</dimen>
+    <dimen name="image_size_very_xsmall">40dp</dimen>
+    <dimen name="image_size_small">50dp</dimen>
+    <dimen name="image_size_normal">100dp</dimen>
+
+    <!-- Welcome page -->
+    <dimen name="button_heigh_small">40dp</dimen>
+    <dimen name="main_button_height">30dp</dimen>
+    <dimen name="main_button_width">150dp</dimen>
+
+    <!-- Custom progress bar -->
+
+    <dimen name="grid_view_item_size">130dp</dimen>
+
+    <dimen name="treeview_left_padding">20dp</dimen>
+    <dimen name="treeview_right_padding">30dp</dimen>
+    <dimen name="treeview_top_padding">20dp</dimen>
+    <dimen name="treeview_bottom_padding">20dp</dimen>
+</resources>

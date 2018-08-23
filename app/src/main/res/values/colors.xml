@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#fe0000</color>
+    <color name="colorPrimaryDark">#d52d2d</color>
+    <color name="colorAccent">#c95731</color>
+    <color name="black">#000</color>
+    <color name="white">#FFF</color>
+    <color name="red">#ff0000</color>
+    <color name="gray">#434040</color>
+    <color name="yellow">#f4ed27</color>
+
+    <color name="water1">#0B0641</color>
+    <color name="water2">#060AD0</color>
+    <color name="water3">#5E5F8D</color>
+    <color name="water4">#048BFE</color>
+    <color name="water5">#91DCFD</color>
+
+    <color name="fire1">#6C0E0E</color>
+    <color name="fire2">#9C0707</color>
+    <color name="fire3">#F50041</color>
+    <color name="fire4">#FD4D0D</color>
+    <color name="fire5">#FE936D</color>
+
+    <color name="earth1">#4C362F</color>
+    <color name="earth2">#442A22</color>
+    <color name="earth3">#7A5448</color>
+    <color name="earth4">#B5723B</color>
+    <color name="earth5">#E3AE82</color>
+
+    <color name="wood1">#1E3E21</color>
+    <color name="wood2">#3F4A42</color>
+    <color name="wood3">#226D31</color>
+    <color name="wood4">#7BF226</color>
+    <color name="wood5">#A6FF66</color>
+
+    <color name="iron1">#EBDB00</color>
+    <color name="iron2">#FFF56B</color>
+    <color name="iron3">#FFFAB8</color>
+    <color name="iron4">#CECDC5</color>
+    <color name="iron5">#FEFDEB</color>
+
+    <color name="transparent_black_forty">#66000000</color>
+
+
+    <color name="vi_giac_mode_start">#f2684b</color>
+    <color name="vi_giac_mode_end">#f69679</color>
+    <color name="peace_mode_start">#189e4d</color>
+    <color name="peace_mode_end">#6cc5a4</color>4697d2
+    <color name="mommy_mode_start">#4697d2</color>
+    <color name="mommy_mode_end">#ace1f9</color>
+    <color name="dear_mode_start">#d31d8d</color>
+    <color name="dear_mode_end">#f7e6f0</color>
+    <color name="awake_mode_start">#e7d325</color>
+    <color name="awake_mode_end">#fcf9c2</color>
+    <color name="love_mode_start">#ed2226</color>
+    <color name="love_mode_end">#f69679</color>
+    <color name="energy_mode_start">#d5552a</color>
+    <color name="energy_mode_end">#f79520</color>
+
+    <color name="switch_active_thumb_color">#2199FF</color>
+    <color name="transparent">#00ffffff</color>
+
+</resources>
