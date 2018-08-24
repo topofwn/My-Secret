@@ -3,6 +3,7 @@ package com.example.kos.mysecrect.data.snappy;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.example.kos.mysecrect.data.model.DataPWD;
 import com.example.kos.mysecrect.utils.OGILVYLog;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.snappydb.DB;
@@ -10,8 +11,13 @@ import com.snappydb.SnappyDB;
 import com.snappydb.SnappydbException;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
+import static com.example.kos.mysecrect.data.snappy.SnapKey.MY_SNAPPY_KEY_DEVICE_ID;
 import static com.example.kos.mysecrect.data.snappy.SnapKey.MY_SNAPPY_KEY_FIREBASE_INSTANCE;
+import static com.example.kos.mysecrect.data.snappy.SnapKey.MY_SNAPPY_KEY_LIST_DATA;
 
 
 /**
@@ -39,7 +45,44 @@ public class MySnappyImpl implements MySnappyDB {
             }
         }
     }
+    public void putString(String key, String value) {
 
+        try {
+            snappydb.put(key, value);
+        } catch (SnappydbException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    public void putInt(String key, int value) {
+
+        try {
+            snappydb.putInt(key, value);
+        } catch (SnappydbException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+    private int getInt(String key){
+        try {
+            return snappydb.getInt(key);
+        } catch (SnappydbException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    private String getString(String key){
+        try {
+            return snappydb.get(key);
+        } catch (SnappydbException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     private <T extends Serializable> T getObject(String key, Class<T> className) {
         try {
             T obj = snappydb.get(key, className);
@@ -69,6 +112,45 @@ public class MySnappyImpl implements MySnappyDB {
     }
 
 
+    @Override
+    public void setDeviceId(String deviceid) {
+        putString(MY_SNAPPY_KEY_DEVICE_ID,deviceid);
+    }
+
+    @Override
+    public String getDeviceId() {
+        return getString(MY_SNAPPY_KEY_DEVICE_ID);
+    }
+
+    @Override
+    public void setListData(List<DataPWD> listdata) {
+        synchronized (snappydb) {
+            try {
+                snappydb.put(MY_SNAPPY_KEY_LIST_DATA, listdata.toArray());
+
+            } catch (SnappydbException e) {
+                OGILVYLog.logTuan("setData", e.getMessage(), MySnappyImpl.class);
+
+            }
+        }
+    }
+
+    @Override
+    public List<DataPWD> getListData() {
+        synchronized (snappydb) {
+            try {
+                if (snappydb.exists(MY_SNAPPY_KEY_LIST_DATA)) {
+                    DataPWD[] array = snappydb.getArray(MY_SNAPPY_KEY_LIST_DATA, DataPWD.class);
+                    if (array != null) {
+                        return new ArrayList<>(Arrays.asList(array));
+                    }
+                }
+            } catch (SnappydbException e) {
+                OGILVYLog.logTuan("getData", e.getMessage(), MySnappyImpl.class);
+            }
+        }
+        return new ArrayList<>();
+    }
 }
 
 

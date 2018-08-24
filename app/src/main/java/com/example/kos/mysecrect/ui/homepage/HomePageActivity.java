@@ -1,5 +1,6 @@
 package com.example.kos.mysecrect.ui.homepage;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -10,11 +11,18 @@ import android.widget.Button;
 import com.example.kos.mysecrect.R;
 import com.example.kos.mysecrect.ui.base.BaseActivity;
 import com.example.kos.mysecrect.utils.Injections;
+import com.example.kos.mysecrect.utils.OGILVYLog;
+import com.google.android.gms.ads.identifier.AdvertisingIdClient;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.io.IOException;
 
 public class HomePageActivity extends BaseActivity implements View.OnClickListener {
     private HomePagePresenter mPresenter = new HomePagePresenter();
     private Button btnGenerate, btnMykey;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +52,25 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void initData() {
+        Handler handler = new Handler();
+        handler.post(() -> {
+            Thread tr = new Thread(() -> {
+                AdvertisingIdClient.Info adInfo;
+                String id;
+                try {
+                    adInfo = AdvertisingIdClient.getAdvertisingIdInfo(getApplicationContext());
+                    id = adInfo.getId();
+                    mPresenter.setMyDeviceId(id);
+                } catch (IOException | GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException exception) {
+                    // Encountered a recoverable error connecting to Google Play services.
+                    OGILVYLog.l(exception);
+                }
+            });
+            tr.start();
+        });
+        db = FirebaseFirestore.getInstance();
 
+       //TODO : get list data with device id
     }
 
     @Override

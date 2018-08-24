@@ -23,10 +23,8 @@ public class HomePagePresenter <V extends HomePageContract.View> extends BasePre
     }
 
 
-
-
     @Override
-    public void saveCommand(@NonNull String command) {
-
+    public void setMyDeviceId(String id) {
+        dataManager.setDeviceId(id);
     }
 }

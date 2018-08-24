@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
-    android:elevation="4dp"
-    android:gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?attr/colorPrimary"
+    app:popupTheme="@style/AppTheme"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
-    app:popupTheme="@style/AppTheme">
+    android:gravity="center"
+    android:elevation="4dp">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My Secret"
-        android:textAllCaps="true"
-        android:gravity="center"
+        android:text="@string/ms"
         android:textColor="@color/white"
         android:textSize="17dp"
+        android:layout_gravity="center"
         android:textStyle="bold"
-        android:typeface="serif" />
+        />
+
 
 </android.support.v7.widget.Toolbar>

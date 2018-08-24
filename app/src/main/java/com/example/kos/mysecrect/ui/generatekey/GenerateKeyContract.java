@@ -6,7 +6,7 @@ import com.example.kos.mysecrect.ui.base.MVPView;
 
 
 public interface GenerateKeyContract  {
-    interface Presenter<V extends GenerateKeyContract.View> extends MVPPresenter<V>
+    interface Presenter<V extends View> extends MVPPresenter<V>
 
     {
 

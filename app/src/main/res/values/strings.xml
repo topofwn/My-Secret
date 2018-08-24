@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">MySecrect</string>
     <string name="some_error">Some error occured</string>
+    <string name="ms">My Secret</string>
     <string name="press_to_generate">Press below button to generate</string>
+    <string name="digit_null_error">Please enter your password length</string>
+    <string name="pwd_max_lengths_error">Your password length must less than 15</string>
 </resources>

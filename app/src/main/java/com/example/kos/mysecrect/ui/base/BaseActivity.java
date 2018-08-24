@@ -62,7 +62,7 @@ public abstract class BaseActivity extends AppCompatActivity
     public void showLoading() {
         if (mProgressDialog == null) {
             mProgressDialog = new ProgressDialog(BaseActivity.this);
-            mProgressDialog.setTitle("Kết nối thiết bị...");
+            mProgressDialog.setTitle("Loading...");
         }
         if (!mProgressDialog.isShowing()) {
             mProgressDialog.show();

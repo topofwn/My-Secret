@@ -7,4 +7,7 @@ package com.example.kos.mysecrect.data.snappy;
 public class SnapKey {
     //============= KEY ====================
     static final String MY_SNAPPY_KEY_FIREBASE_INSTANCE = "MY_SNAPPY_KEY_FIREBASE_INSTANCE";
+    static final String MY_SNAPPY_KEY_DEVICE_ID = "MY_SNAPPY_KEY_DEVICE_ID";
+    static final String MY_SNAPPY_KEY_LIST_DATA = "MY_SNAPPY_KEY_LIST_DATA";
+
 }
