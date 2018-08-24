@@ -3,9 +3,12 @@ package com.example.kos.mysecrect.ui.homepage;
 import android.support.annotation.NonNull;
 
 import com.example.kos.mysecrect.data.DataManager;
+import com.example.kos.mysecrect.data.model.DataPWD;
 import com.example.kos.mysecrect.ui.base.BasePresenter;
 import com.example.kos.mysecrect.ui.base.MVPView;
 import com.example.kos.mysecrect.utils.SchedulerProvider;
+
+import java.util.List;
 
 public class HomePagePresenter <V extends HomePageContract.View> extends BasePresenter<V> implements HomePageContract.Presenter<V>{
     public HomePagePresenter(SchedulerProvider schedulerProvider, DataManager dataManager) {
@@ -26,5 +29,10 @@ public class HomePagePresenter <V extends HomePageContract.View> extends BasePre
     @Override
     public void setMyDeviceId(String id) {
         dataManager.setDeviceId(id);
+    }
+
+    @Override
+    public void setListData(List<DataPWD> lData) {
+        dataManager.setListData(lData);
     }
 }
