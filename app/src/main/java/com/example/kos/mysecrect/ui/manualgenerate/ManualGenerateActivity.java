@@ -98,9 +98,9 @@ public class ManualGenerateActivity extends BaseActivity implements View.OnClick
             hideKeyboard();
             if(!edtApplication.getText().toString().equals("")){
                 if(!edtPWD.getText().toString().equals("")){
-                    DataPWD newData = null;
+
                     try {
-                        newData = new DataPWD(edtApplication.getText().toString(), EncrytedUtils.Encrypt(edtPWD.getText().toString()));
+                        DataPWD newData = new DataPWD(edtApplication.getText().toString(), EncrytedUtils.Encrypt(edtPWD.getText().toString()));
                         FirebaseUtils.addNewField(newData);
                         UIUtils.showToast(getApplicationContext(),"Saved successfully");
                     } catch (NoSuchAlgorithmException e) {

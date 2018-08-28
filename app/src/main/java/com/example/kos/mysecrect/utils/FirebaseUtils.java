@@ -4,10 +4,13 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.example.kos.mysecrect.data.model.DataPWD;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -27,22 +30,32 @@ public class FirebaseUtils {
     }
 
 
-    public static List<DataPWD> getDataFromFirebase(String deviceId){
+    public static void getDataFromFirebase(String deviceId){
         getInstance();
+  //      initData = new ArrayList<>();
         db.collection("DataPWd")
                 .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        initData = new ArrayList<>();
-                        for (int i=0;i< queryDocumentSnapshots.getDocuments().size();i++){
-                             DataPWD temp = new DataPWD(queryDocumentSnapshots.getDocuments().get(i).getString(FIELD_NAME),queryDocumentSnapshots.getDocuments().get(i).getString(ENCRYPTED_KEY));
-                             initData.add(temp);
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                              Log.d("NOti","My id: "+document.getId()+" and my data: "+document.getData());
+
+                            }
+
+                        } else {
+                            Log.d("Noti", "Error getting documents: ", task.getException());
                         }
                     }
                 });
-             return initData;
+
+
     }
+
+
+
+
     public static void addNewField(DataPWD Ndata){
         getInstance();
         Map< String, Object > newData = new HashMap< >();

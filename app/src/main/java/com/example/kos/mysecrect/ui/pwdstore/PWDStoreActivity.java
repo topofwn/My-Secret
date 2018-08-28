@@ -11,10 +11,14 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.kos.mysecrect.R;
+import com.example.kos.mysecrect.data.model.DataPWD;
 import com.example.kos.mysecrect.ui.base.BaseActivity;
 import com.example.kos.mysecrect.ui.pwdstore.adapter.PWDStoreAdapter;
 import com.example.kos.mysecrect.utils.FirebaseUtils;
 import com.example.kos.mysecrect.utils.Injections;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PWDStoreActivity extends BaseActivity implements View.OnClickListener {
     private PWDStorePresenter mPresenter = new PWDStorePresenter();
@@ -72,20 +76,22 @@ public class PWDStoreActivity extends BaseActivity implements View.OnClickListen
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
         listData = findViewById(R.id.lv_data);
-        mPWDStoreAdapter =new PWDStoreAdapter(getApplicationContext(),R.layout.item_data,FirebaseUtils.getDataFromFirebase(mPresenter.getDeveiceId()));
-        listData.setAdapter(mPWDStoreAdapter);
-        listData.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-            }
-        });
-        listData.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                return false;
-            }
-        });
+        FirebaseUtils.getDataFromFirebase(mPresenter.getDeveiceId());
+        List<DataPWD> myList = new ArrayList<>();
+//        mPWDStoreAdapter =new PWDStoreAdapter(getApplicationContext(),R.layout.item_data,myList);
+//        listData.setAdapter(mPWDStoreAdapter);
+//        listData.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//            }
+//        });
+//        listData.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//            @Override
+//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+//                return false;
+//            }
+//        });
     }
 
     @Override
