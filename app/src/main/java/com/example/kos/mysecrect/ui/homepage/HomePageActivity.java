@@ -10,6 +10,7 @@ import com.example.kos.mysecrect.R;
 import com.example.kos.mysecrect.data.model.DataPWD;
 import com.example.kos.mysecrect.ui.base.BaseActivity;
 import com.example.kos.mysecrect.ui.generatekey.GenerateKeyActivity;
+import com.example.kos.mysecrect.ui.manualgenerate.ManualGenerateActivity;
 import com.example.kos.mysecrect.ui.pwdstore.PWDStoreActivity;
 import com.example.kos.mysecrect.utils.ActivityUtils;
 import com.example.kos.mysecrect.utils.Injections;
@@ -84,10 +85,13 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.btn1){
-            ActivityUtils.startActivity(HomePageActivity.this,GenerateKeyActivity.class,true);
+            ActivityUtils.startActivity(HomePageActivity.this,GenerateKeyActivity.class,false,true);
         }
         else if (v.getId() == R.id.btn2){
-            ActivityUtils.startActivity(HomePageActivity.this, PWDStoreActivity.class,true);
+            ActivityUtils.startActivity(HomePageActivity.this, PWDStoreActivity.class,false,true);
+        }
+        else if(v.getId() == R.id.btn3){
+            ActivityUtils.startActivity(HomePageActivity.this, ManualGenerateActivity.class,false,true);
         }
     }
 

@@ -3,6 +3,9 @@ package com.example.kos.mysecrect.ui.pwdstore;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -31,12 +34,34 @@ public class PWDStoreActivity extends BaseActivity implements View.OnClickListen
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.base_done_menu, menu);
+        return true;
+    }
+
 
 
     @Override
     public void onClick(View v) {
 
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+
+            default: break;
+
+
+        }
+        return true;
+    }
+
 
     @Override
     protected void initView() {

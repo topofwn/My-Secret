@@ -7,6 +7,36 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/tool_bar" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:id="@+id/NameField"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+           android:textSize="16dp"
+            android:padding="5dp"
+            android:text="Application:"
+
+            />
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:imeOptions="actionDone"
+        android:gravity="center"
+        android:background="@color/white"
+        android:inputType="text"
+        android:id="@+id/edtAppName"
+        android:textColorHint="@color/common_google_signin_btn_text_dark_disabled"
+        />
+    </LinearLayout>
     <TextView
         android:layout_width="250dp"
         android:layout_height="50dp"
@@ -15,6 +45,8 @@
         android:id="@+id/txtKey"
         android:textColor="@color/black"
         android:textSize="19dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/NameField"
         android:textColorHint="@color/common_google_signin_btn_text_dark_disabled"
         android:hint="@string/press_to_generate"
         android:gravity="center"

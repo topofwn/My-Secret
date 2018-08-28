@@ -60,8 +60,9 @@
         <EditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:padding="3dp"
+            android:gravity="center"
+            android:inputType="textPassword"
             android:background="@color/white"
             android:layout_marginLeft="15dp"
             android:imeOptions="actionDone"

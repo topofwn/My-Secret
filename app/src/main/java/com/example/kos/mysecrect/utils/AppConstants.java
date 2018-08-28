@@ -19,7 +19,7 @@ public class AppConstants {
     public static final String PATH_PARAM_LONGT = "longt";
     public static final String PICK_COLOR = "pick_color";
 
-    public static final String FIELD_NAME = "fielName";
+    public static final String FIELD_NAME = "fieldName";
     public static final String ENCRYPTED_KEY = "encryptedKey";
 
     public static final long SCAN_PERIOD = 10000; //10 seconds
