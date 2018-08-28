@@ -21,9 +21,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.pwdstore.PWDStoreActivity"></activity>
-        <activity android:name=".ui.homepage.HomePageActivity">
+        <activity android:name=".ui.pwdstore.PWDStoreActivity">
+
         </activity>
+        <activity android:name=".ui.homepage.HomePageActivity">
+
+        </activity>
+<activity android:name=".ui.manualgenerate.ManualGenerateActivity">
+
+</activity>
     </application>
 
 </manifest>

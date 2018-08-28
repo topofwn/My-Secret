@@ -4,15 +4,19 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.kos.mysecrect.R;
 import com.example.kos.mysecrect.ui.base.BaseActivity;
+import com.example.kos.mysecrect.ui.pwdstore.adapter.PWDStoreAdapter;
+import com.example.kos.mysecrect.utils.FirebaseUtils;
 import com.example.kos.mysecrect.utils.Injections;
 
 public class PWDStoreActivity extends BaseActivity implements View.OnClickListener {
     private PWDStorePresenter mPresenter = new PWDStorePresenter();
     private ListView listData;
+    private PWDStoreAdapter mPWDStoreAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,6 +47,20 @@ public class PWDStoreActivity extends BaseActivity implements View.OnClickListen
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
         listData = findViewById(R.id.lv_data);
+        mPWDStoreAdapter =new PWDStoreAdapter(getApplicationContext(),R.layout.item_data,FirebaseUtils.getDataFromFirebase(mPresenter.getDeveiceId()));
+        listData.setAdapter(mPWDStoreAdapter);
+        listData.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
+        listData.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                return false;
+            }
+        });
     }
 
     @Override

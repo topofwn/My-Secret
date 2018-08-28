@@ -17,6 +17,7 @@ public interface PWDStoreContract {
 
         String getDecrypt(String output) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException;
 
+        String getDeveiceId();
 
     }
     interface View extends MVPView {

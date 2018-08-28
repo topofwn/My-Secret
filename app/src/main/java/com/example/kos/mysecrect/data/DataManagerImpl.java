@@ -21,6 +21,8 @@ public class DataManagerImpl implements DataManager {
     private MySnappyImpl mySnappy;
 
 
+
+
     public DataManagerImpl(Context context) {
 
         this.mySnappy = MySnappyImpl.newInstance(context);

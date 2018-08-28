@@ -54,7 +54,10 @@ public class PWDStorePresenter <V extends PWDStoreContract.View> extends BasePre
         return decrypted;
     }
 
-
+    @Override
+    public String getDeveiceId() {
+        return dataManager.getDeviceId();
+    }
 
 
     private byte[] stringToBytes(String s) {
