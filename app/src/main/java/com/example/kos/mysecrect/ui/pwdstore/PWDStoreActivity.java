@@ -7,15 +7,23 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.kos.mysecrect.R;
 import com.example.kos.mysecrect.data.model.DataPWD;
 import com.example.kos.mysecrect.ui.base.BaseActivity;
+import com.example.kos.mysecrect.ui.dialog.ShowDataDialog;
 import com.example.kos.mysecrect.ui.pwdstore.adapter.PWDStoreAdapter;
 import com.example.kos.mysecrect.utils.Injections;
 
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 public class PWDStoreActivity extends BaseActivity implements View.OnClickListener {
     private PWDStorePresenter mPresenter = new PWDStorePresenter();
@@ -78,6 +86,32 @@ public class PWDStoreActivity extends BaseActivity implements View.OnClickListen
         listData = findViewById(R.id.lv_data);
         adapter = new PWDStoreAdapter(getApplicationContext(),R.layout.item_data,lData);
         listData.setAdapter(adapter);
+        listData.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                DataPWD mData = adapter.getItem(position);
+                try {
+                    ShowDataDialog dialog = new ShowDataDialog(PWDStoreActivity.this,mData);
+                    dialog.show();
+                } catch (IllegalBlockSizeException e) {
+                    e.printStackTrace();
+                } catch (InvalidKeyException e) {
+                    e.printStackTrace();
+                } catch (BadPaddingException e) {
+                    e.printStackTrace();
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                } catch (NoSuchPaddingException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        listData.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                return false;
+            }
+        });
     }
     @Override
     protected void initData() {
