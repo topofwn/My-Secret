@@ -1,7 +1,7 @@
 package com.example.kos.mysecrect.ui.homepage;
 
-import android.os.Handler;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
@@ -19,10 +19,13 @@ import com.google.android.gms.ads.identifier.AdvertisingIdClient;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomePageActivity extends BaseActivity implements View.OnClickListener {
@@ -78,8 +81,25 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
         });
 
 
+        CollectionReference col = FirebaseFirestore.getInstance().collection("DataPWd");
 
-       //TODO : get list data with device id
+        List<DataPWD> myArray = new ArrayList<>();
+        showLoading();
+        col.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(QueryDocumentSnapshot document : queryDocumentSnapshots){
+                    DataPWD data = document.toObject(DataPWD.class);
+                    myArray.add(data);
+                }
+                mPresenter.setListData(myArray);
+                hideLoading();
+            }
+
+        });
+
+
+
     }
 
     @Override

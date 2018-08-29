@@ -1,8 +1,11 @@
 package com.example.kos.mysecrect.ui.generatekey;
 
 import com.example.kos.mysecrect.data.DataManager;
+import com.example.kos.mysecrect.data.model.DataPWD;
 import com.example.kos.mysecrect.ui.base.BasePresenter;
 import com.example.kos.mysecrect.utils.SchedulerProvider;
+
+import java.util.List;
 
 
 public class GenerateKeyPresenter <V extends GenerateKeyContract.View> extends BasePresenter<V> implements GenerateKeyContract.Presenter<V> {
@@ -20,9 +23,15 @@ public class GenerateKeyPresenter <V extends GenerateKeyContract.View> extends B
     public void onViewInitialized() {
         super.onViewInitialized();
     }
+    @Override
+    public List<DataPWD> getList() {
+        return dataManager.getListData();
+    }
 
-
-
+    @Override
+    public void setList(List<DataPWD> data) {
+        dataManager.setListData(data);
+    }
 
 
 }

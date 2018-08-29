@@ -7,23 +7,21 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.kos.mysecrect.R;
 import com.example.kos.mysecrect.data.model.DataPWD;
 import com.example.kos.mysecrect.ui.base.BaseActivity;
 import com.example.kos.mysecrect.ui.pwdstore.adapter.PWDStoreAdapter;
-import com.example.kos.mysecrect.utils.FirebaseUtils;
 import com.example.kos.mysecrect.utils.Injections;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PWDStoreActivity extends BaseActivity implements View.OnClickListener {
     private PWDStorePresenter mPresenter = new PWDStorePresenter();
     private ListView listData;
-    private PWDStoreAdapter mPWDStoreAdapter;
+    private PWDStoreAdapter adapter;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,6 +29,7 @@ public class PWDStoreActivity extends BaseActivity implements View.OnClickListen
         setContentView(R.layout.activity_pwd_store);
         mPresenter = new PWDStorePresenter(Injections.provideSchedulerProvider(),
                 Injections.provideAppDataManager(PWDStoreActivity.this));
+
         initView();
         mPresenter.onAttach(this);
         mPresenter.onViewInitialized();
@@ -46,7 +45,6 @@ public class PWDStoreActivity extends BaseActivity implements View.OnClickListen
     }
 
 
-
     @Override
     public void onClick(View v) {
 
@@ -59,7 +57,8 @@ public class PWDStoreActivity extends BaseActivity implements View.OnClickListen
                 onBackPressed();
                 break;
 
-            default: break;
+            default:
+                break;
 
 
         }
@@ -75,27 +74,15 @@ public class PWDStoreActivity extends BaseActivity implements View.OnClickListen
             getSupportActionBar().setDisplayShowTitleEnabled(false);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+        List<DataPWD> lData = mPresenter.getListData();
         listData = findViewById(R.id.lv_data);
-        FirebaseUtils.getDataFromFirebase(mPresenter.getDeveiceId());
-        List<DataPWD> myList = new ArrayList<>();
-//        mPWDStoreAdapter =new PWDStoreAdapter(getApplicationContext(),R.layout.item_data,myList);
-//        listData.setAdapter(mPWDStoreAdapter);
-//        listData.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//            }
-//        });
-//        listData.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-//            @Override
-//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-//                return false;
-//            }
-//        });
+        adapter = new PWDStoreAdapter(getApplicationContext(),R.layout.item_data,lData);
+        listData.setAdapter(adapter);
     }
-
     @Override
     protected void initData() {
 
     }
+
+
 }

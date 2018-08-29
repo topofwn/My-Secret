@@ -2,7 +2,6 @@ package com.example.kos.mysecrect.data.snappy;
 
 
 import com.example.kos.mysecrect.data.model.DataPWD;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 

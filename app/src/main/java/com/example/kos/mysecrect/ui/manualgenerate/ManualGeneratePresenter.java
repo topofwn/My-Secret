@@ -1,8 +1,11 @@
 package com.example.kos.mysecrect.ui.manualgenerate;
 
 import com.example.kos.mysecrect.data.DataManager;
+import com.example.kos.mysecrect.data.model.DataPWD;
 import com.example.kos.mysecrect.ui.base.BasePresenter;
 import com.example.kos.mysecrect.utils.SchedulerProvider;
+
+import java.util.List;
 
 public class ManualGeneratePresenter<V extends ManualGenerateContract.View> extends BasePresenter<V> implements ManualGenerateContract.Presenter<V> {
     public ManualGeneratePresenter(SchedulerProvider schedulerProvider, DataManager dataManager) {
@@ -20,4 +23,13 @@ public class ManualGeneratePresenter<V extends ManualGenerateContract.View> exte
     }
 
 
+    @Override
+    public List<DataPWD> getList() {
+        return dataManager.getListData();
+    }
+
+    @Override
+    public void setList(List<DataPWD> data) {
+        dataManager.setListData(data);
+    }
 }

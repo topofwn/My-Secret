@@ -6,6 +6,8 @@ public class DataPWD implements Serializable{
     private String fieldName;
     private String encrytedKey;
 
+    public DataPWD(){}
+
     public DataPWD(String name, String key)
     {
         this.fieldName = name;

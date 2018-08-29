@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 
 import com.example.kos.mysecrect.data.model.DataPWD;
 import com.example.kos.mysecrect.utils.OGILVYLog;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.snappydb.DB;
 import com.snappydb.SnappyDB;
 import com.snappydb.SnappydbException;
@@ -16,7 +15,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.example.kos.mysecrect.data.snappy.SnapKey.MY_SNAPPY_KEY_DEVICE_ID;
-import static com.example.kos.mysecrect.data.snappy.SnapKey.MY_SNAPPY_KEY_FIREBASE_INSTANCE;
 import static com.example.kos.mysecrect.data.snappy.SnapKey.MY_SNAPPY_KEY_LIST_DATA;
 
 

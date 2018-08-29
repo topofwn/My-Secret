@@ -1,22 +1,17 @@
 package com.example.kos.mysecrect.ui.pwdstore;
 
 import com.example.kos.mysecrect.data.DataManager;
+import com.example.kos.mysecrect.data.model.DataPWD;
 import com.example.kos.mysecrect.ui.base.BasePresenter;
 import com.example.kos.mysecrect.utils.SchedulerProvider;
 
-import java.math.BigInteger;
-import java.security.InvalidKeyException;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
-import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.util.Arrays;
+import java.util.List;
 
-import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 
 public class PWDStorePresenter <V extends PWDStoreContract.View> extends BasePresenter<V> implements PWDStoreContract.Presenter<V> {
     private KeyPairGenerator kpg;
@@ -44,24 +39,10 @@ public class PWDStorePresenter <V extends PWDStoreContract.View> extends BasePre
     }
 
 
-
     @Override
-    public String getDecrypt(String output) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
-        cipher1=Cipher.getInstance("RSA");
-        cipher1.init(Cipher.DECRYPT_MODE, privateKey);
-        decryptedBytes = cipher1.doFinal(stringToBytes(output));
-        decrypted = new String(decryptedBytes);
-        return decrypted;
-    }
-
-    @Override
-    public String getDeveiceId() {
-        return dataManager.getDeviceId();
+    public List<DataPWD> getListData() {
+        return dataManager.getListData();
     }
 
 
-    private byte[] stringToBytes(String s) {
-        byte[] b2 = new BigInteger(s, 36).toByteArray();
-        return Arrays.copyOfRange(b2, 1, b2.length);
-    }
 }

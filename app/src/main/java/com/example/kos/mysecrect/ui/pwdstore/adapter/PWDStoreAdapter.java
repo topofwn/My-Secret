@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.kos.mysecrect.R;
@@ -27,6 +26,7 @@ public class PWDStoreAdapter extends ArrayAdapter<DataPWD>{
     public PWDStoreAdapter( Context context,int resourceId,List<DataPWD> data) {
         super(context,resourceId);
         this.mContext = context;
+        this.inflater = LayoutInflater.from(context);
         this.mData = data;    }
 
 

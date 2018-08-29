@@ -2,7 +2,6 @@ package com.example.kos.mysecrect.ui.generatekey;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,11 +18,11 @@ import com.example.kos.mysecrect.utils.EncrytedUtils;
 import com.example.kos.mysecrect.utils.FirebaseUtils;
 import com.example.kos.mysecrect.utils.Injections;
 import com.example.kos.mysecrect.utils.UIUtils;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.List;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -34,9 +33,10 @@ public class GenerateKeyActivity extends BaseActivity implements View.OnClickLis
     private GenerateKeyPresenter mPresenter = new GenerateKeyPresenter();
     private TextView key;
     private Button generate, save;
-    private  FirebaseFirestore db;
+
     private String errorMaxLength,errorMinLength;
     private EditText numDigit,edtName;
+    private List<String> myData;
     final static String allowedCharacter = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#%&+=-";
 
     @Override
@@ -103,7 +103,7 @@ public class GenerateKeyActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     protected void initData() {
-        db = FirebaseFirestore.getInstance();
+
     }
 
     @Override
@@ -114,6 +114,9 @@ public class GenerateKeyActivity extends BaseActivity implements View.OnClickLis
                 try {
                     DataPWD newData = new DataPWD(edtName.getText().toString(), EncrytedUtils.Encrypt(key.getText().toString()));
                     FirebaseUtils.addNewField(newData);
+                    List<DataPWD> tempList = mPresenter.getList();
+                    tempList.add(newData);
+                    mPresenter.setList(tempList);
                     UIUtils.showToast(getApplicationContext(),"Saved successfully");
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();

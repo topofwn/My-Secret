@@ -29,7 +29,8 @@ public class HomePagePresenter <V extends HomePageContract.View> extends BasePre
     }
 
     @Override
-    public void setListData(List<DataPWD> lData) {
-        dataManager.setListData(lData);
+    public void setListData(List<DataPWD> data) {
+        dataManager.setListData(data);
     }
+
 }

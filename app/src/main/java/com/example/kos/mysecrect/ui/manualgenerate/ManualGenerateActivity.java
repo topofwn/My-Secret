@@ -19,6 +19,7 @@ import com.example.kos.mysecrect.utils.UIUtils;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -85,6 +86,7 @@ public class ManualGenerateActivity extends BaseActivity implements View.OnClick
     @Override
     protected void initData() {
 
+
     }
 
     @Override
@@ -101,6 +103,9 @@ public class ManualGenerateActivity extends BaseActivity implements View.OnClick
 
                     try {
                         DataPWD newData = new DataPWD(edtApplication.getText().toString(), EncrytedUtils.Encrypt(edtPWD.getText().toString()));
+                        List<DataPWD> tempList = mPresenter.getList();
+                        tempList.add(newData);
+                        mPresenter.setList(tempList);
                         FirebaseUtils.addNewField(newData);
                         UIUtils.showToast(getApplicationContext(),"Saved successfully");
                     } catch (NoSuchAlgorithmException e) {
