@@ -17,13 +17,7 @@ import com.example.kos.mysecrect.ui.dialog.ShowDataDialog;
 import com.example.kos.mysecrect.ui.pwdstore.adapter.PWDStoreAdapter;
 import com.example.kos.mysecrect.utils.Injections;
 
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 
 public class PWDStoreActivity extends BaseActivity implements View.OnClickListener {
     private PWDStorePresenter mPresenter = new PWDStorePresenter();
@@ -90,20 +84,14 @@ public class PWDStoreActivity extends BaseActivity implements View.OnClickListen
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 DataPWD mData = adapter.getItem(position);
+                ShowDataDialog dialog = null;
                 try {
-                    ShowDataDialog dialog = new ShowDataDialog(PWDStoreActivity.this,mData);
-                    dialog.show();
-                } catch (IllegalBlockSizeException e) {
-                    e.printStackTrace();
-                } catch (InvalidKeyException e) {
-                    e.printStackTrace();
-                } catch (BadPaddingException e) {
-                    e.printStackTrace();
-                } catch (NoSuchAlgorithmException e) {
-                    e.printStackTrace();
-                } catch (NoSuchPaddingException e) {
+                    dialog = new ShowDataDialog(PWDStoreActivity.this,mData);
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
+                dialog.show();
+
             }
         });
         listData.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {

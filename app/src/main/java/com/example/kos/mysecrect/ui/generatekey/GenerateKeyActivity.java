@@ -19,14 +19,8 @@ import com.example.kos.mysecrect.utils.FirebaseUtils;
 import com.example.kos.mysecrect.utils.Injections;
 import com.example.kos.mysecrect.utils.UIUtils;
 
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.List;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 
 
 public class GenerateKeyActivity extends BaseActivity implements View.OnClickListener {
@@ -111,24 +105,19 @@ public class GenerateKeyActivity extends BaseActivity implements View.OnClickLis
         if(v.getId() == R.id.btnSaveKey){
             hideKeyboard();
             if (!edtName.getText().toString().equals("")){
+
+                    DataPWD newData = new DataPWD(edtName.getText().toString(), key.getText().toString(),getRandomString(5));
                 try {
-                    DataPWD newData = new DataPWD(edtName.getText().toString(), EncrytedUtils.Encrypt(key.getText().toString()));
-                    FirebaseUtils.addNewField(newData);
+                    newData = EncrytedUtils.Encrypt(newData);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                FirebaseUtils.addNewField(newData);
                     List<DataPWD> tempList = mPresenter.getList();
                     tempList.add(newData);
                     mPresenter.setList(tempList);
                     UIUtils.showToast(getApplicationContext(),"Saved successfully");
-                } catch (NoSuchAlgorithmException e) {
-                    e.printStackTrace();
-                } catch (NoSuchPaddingException e) {
-                    e.printStackTrace();
-                } catch (InvalidKeyException e) {
-                    e.printStackTrace();
-                } catch (IllegalBlockSizeException e) {
-                    e.printStackTrace();
-                } catch (BadPaddingException e) {
-                    e.printStackTrace();
-                }
+
             }else {
                 UIUtils.showToast(getApplicationContext(),"Please enter the application name");
             }

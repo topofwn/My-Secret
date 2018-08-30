@@ -15,18 +15,11 @@ import com.example.kos.mysecrect.data.model.DataPWD;
 import com.example.kos.mysecrect.utils.EncrytedUtils;
 import com.example.kos.mysecrect.utils.UIUtils;
 
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-
-public class ShowDataDialog extends Dialog implements View.OnClickListener{
+public class ShowDataDialog extends Dialog{
     private Context mContext;
-    private ShowDataDialogListener mListener;
 
-    public ShowDataDialog(@NonNull Context context, DataPWD mData) throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+
+    public ShowDataDialog(@NonNull Context context, DataPWD mData) throws Exception {
         super(context);
         this.mContext = context;
 
@@ -41,9 +34,10 @@ public class ShowDataDialog extends Dialog implements View.OnClickListener{
             v.setBackgroundResource(android.R.color.transparent);
         }
         TextView txtFieldName = findViewById(R.id.txtKeyName);
-        TextView txtKey = findViewById(R.id.txtKey);
+        TextView txtKey = findViewById(R.id.txtYourKey);
         txtFieldName.setText(mData.getFieldName());
-        txtKey.setText(EncrytedUtils.getDecrypt(mData.getEncrytKey()));
+        txtKey.setText(EncrytedUtils.Decrypt(mData));
+
         ImageButton btnCopy = findViewById(R.id.btnCopyClipboard);
         btnCopy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,14 +56,5 @@ public class ShowDataDialog extends Dialog implements View.OnClickListener{
                 dismiss();
             }
         });
-    }
-
-    public ShowDataDialog(@NonNull Context context, int themeResId) {
-        super(context, themeResId);
-    }
-
-    @Override
-    public void onClick(View v) {
-
     }
 }

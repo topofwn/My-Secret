@@ -1,63 +1,49 @@
 package com.example.kos.mysecrect.utils;
 
-import java.math.BigInteger;
-import java.security.InvalidKeyException;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.NoSuchAlgorithmException;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import java.util.Arrays;
+import android.util.Base64;
 
-import javax.crypto.BadPaddingException;
+import com.example.kos.mysecrect.data.model.DataPWD;
+
+import java.security.MessageDigest;
+
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.SecretKeySpec;
 
 public class EncrytedUtils {
 
-    private static KeyPairGenerator kpg;
-    private static KeyPair kp;
-    private static PublicKey publicKey;
-    private static PrivateKey privateKey;
-    private static byte[] encryptedBytes, decryptedBytes;
-    private static Cipher cipher, cipher1;
-    private static String encrypted, decrypted;
+  private static String AES = "AES";
 
-    public static String getDecrypt(String output) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
-        cipher1=Cipher.getInstance("RSA");
-        cipher1.init(Cipher.DECRYPT_MODE, privateKey);
-        decryptedBytes = cipher1.doFinal(stringToBytes(output));
-        decrypted = new String(decryptedBytes);
-        return decrypted;
+    public static String Decrypt(DataPWD mData) throws Exception {
+        SecretKeySpec key = generateKeySpec(mData.getMyKeySpec());
+        Cipher cipher1=Cipher.getInstance(AES);
+        cipher1.init(Cipher.DECRYPT_MODE, key);
+        byte[] decodeval = Base64.decode(mData.getEncrytKey(),Base64.DEFAULT);
+        byte[] decryptedBytes = cipher1.doFinal(decodeval);
+        String value = new String(decryptedBytes);
+        return value;
     }
 
-    private static byte[] stringToBytes(String s) {
-        byte[] b2 = new BigInteger(s, 36).toByteArray();
-        return Arrays.copyOfRange(b2, 1, b2.length);
+
+    public static SecretKeySpec generateKeySpec(String key) throws  Exception{
+    final MessageDigest digest = MessageDigest.getInstance("SHA-256");
+    byte[] bytes = key.getBytes();
+    digest.update(bytes,0,bytes.length);
+    byte[] keySpec = digest.digest();
+    return new SecretKeySpec(keySpec,"AES");
     }
 
-    public static String Encrypt (String plain) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException
-    {
-        kpg = KeyPairGenerator.getInstance("RSA");
-        kpg.initialize(1024);
-        kp = kpg.genKeyPair();
-        publicKey = kp.getPublic();
-        privateKey = kp.getPrivate();
-
-        cipher = Cipher.getInstance("RSA");
-        cipher.init(Cipher.ENCRYPT_MODE, publicKey);
-        encryptedBytes = cipher.doFinal(plain.getBytes());
-
-        encrypted = bytesToString(encryptedBytes);
-        return encrypted;
+    public static DataPWD Encrypt (DataPWD mData) throws Exception {
+        SecretKeySpec key = generateKeySpec(mData.getMyKeySpec());
+        DataPWD newData = new DataPWD();
+        newData.setMyKeySpec(mData.getMyKeySpec());
+        newData.setFieldName(mData.getFieldName());
+        Cipher cipher = Cipher.getInstance(AES);
+        cipher.init(Cipher.ENCRYPT_MODE, key);
+        byte[] encryptedBytes = cipher.doFinal(mData.getEncrytKey().getBytes());
+        String encrypted = android.util.Base64.encodeToString(encryptedBytes, android.util.Base64.DEFAULT);
+        newData.setEncrytKey(encrypted);
+        return newData;
 
     }
 
-    public static  String bytesToString(byte[] b) {
-        byte[] b2 = new byte[b.length + 1];
-        b2[0] = 1;
-        System.arraycopy(b, 0, b2, 1, b.length);
-        return new BigInteger(b2).toString(36);
-    }
 }

@@ -5,13 +5,19 @@ import java.io.Serializable;
 public class DataPWD implements Serializable{
     private String fieldName;
     private String encrytedKey;
+    private String myKeySpec;
 
-    public DataPWD(){}
+    public DataPWD(){
+        this.fieldName = "";
+        this.encrytedKey= "";
+        this.myKeySpec = "";
+    }
 
-    public DataPWD(String name, String key)
+    public DataPWD(String name, String key, String keySpec)
     {
         this.fieldName = name;
         this.encrytedKey = key;
+        this.myKeySpec = keySpec;
     }
     public String getEncrytKey() {
         return encrytedKey;
@@ -30,5 +36,11 @@ public class DataPWD implements Serializable{
         this.fieldName = fieldName;
     }
 
+    public String getMyKeySpec() {
+        return myKeySpec;
+    }
 
+    public void setMyKeySpec(String myKeySpec) {
+        this.myKeySpec = myKeySpec;
+    }
 }

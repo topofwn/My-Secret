@@ -17,19 +17,12 @@ import com.example.kos.mysecrect.utils.FirebaseUtils;
 import com.example.kos.mysecrect.utils.Injections;
 import com.example.kos.mysecrect.utils.UIUtils;
 
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 
 public class ManualGenerateActivity extends BaseActivity implements View.OnClickListener {
     private ManualGeneratePresenter mPresenter = new ManualGeneratePresenter();
     private EditText edtApplication,edtPWD;
     private Button btnSave,btnClear;
-
 
 
     @Override
@@ -101,24 +94,19 @@ public class ManualGenerateActivity extends BaseActivity implements View.OnClick
             if(!edtApplication.getText().toString().equals("")){
                 if(!edtPWD.getText().toString().equals("")){
 
-                    try {
-                        DataPWD newData = new DataPWD(edtApplication.getText().toString(), EncrytedUtils.Encrypt(edtPWD.getText().toString()));
+
+                        DataPWD newData = new DataPWD(edtApplication.getText().toString(), edtPWD.getText().toString(),edtApplication.getText().toString());
                         List<DataPWD> tempList = mPresenter.getList();
-                        tempList.add(newData);
+                    try {
+                        newData = EncrytedUtils.Encrypt(newData);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    tempList.add(newData);
                         mPresenter.setList(tempList);
                         FirebaseUtils.addNewField(newData);
                         UIUtils.showToast(getApplicationContext(),"Saved successfully");
-                    } catch (NoSuchAlgorithmException e) {
-                        e.printStackTrace();
-                    } catch (NoSuchPaddingException e) {
-                        e.printStackTrace();
-                    } catch (InvalidKeyException e) {
-                        e.printStackTrace();
-                    } catch (IllegalBlockSizeException e) {
-                        e.printStackTrace();
-                    } catch (BadPaddingException e) {
-                        e.printStackTrace();
-                    }
+
 
                 }else {
                     UIUtils.showToast(getApplicationContext(),"Please enter the password");
@@ -129,7 +117,5 @@ public class ManualGenerateActivity extends BaseActivity implements View.OnClick
         }
 
     }
-
-
 
 }
