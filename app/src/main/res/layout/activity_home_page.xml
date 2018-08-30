@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/energy_mode_end"
+    android:background="@drawable/bg_univserse"
     tools:context=".ui.homepage.HomePageActivity">
     <include
         android:id="@+id/toolbar"

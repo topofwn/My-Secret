@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/energy_mode_end">
+    android:background="@drawable/bg_univserse">
     <include
         android:id="@+id/toolbar"
         layout="@layout/tool_bar" />
@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Application:"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="18dp"
         android:padding="5dp"
         android:id="@+id/txtApplication"
@@ -50,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Password:"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="18dp"
             android:padding="5dp"
             android:id="@+id/txtKeyPWD"

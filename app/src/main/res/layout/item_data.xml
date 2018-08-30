@@ -6,6 +6,7 @@
     android:id="@+id/itemField"
     android:background="@color/transparent"
     android:orientation="horizontal"
+    android:gravity="center"
     android:padding="5dp"
     >
 <TextView
@@ -13,9 +14,10 @@
     android:layout_height="wrap_content"
     android:id="@+id/txtKeyName"
     android:padding="3dp"
+
     android:layout_marginLeft="25dp"
     android:textSize="18dp"
-    android:textColor="@color/black"
+    android:textColor="@color/white"
     android:layout_gravity="center_vertical"
     android:text="AFDFSF"
     />
