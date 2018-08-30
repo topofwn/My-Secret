@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -37,8 +38,9 @@ public class ShowDataDialog extends Dialog{
         TextView txtKey = findViewById(R.id.txtYourKey);
         txtFieldName.setText(mData.getFieldName());
         txtKey.setText(EncrytedUtils.Decrypt(mData));
-
-        ImageButton btnCopy = findViewById(R.id.btnCopyClipboard);
+        Button btnEncrypt = findViewById(R.id.btnEncrypt);
+        Button btnDecrypt = findViewById(R.id.btnDecrypt);
+        Button btnCopy = findViewById(R.id.btnCopyClipboard);
         btnCopy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,6 +56,28 @@ public class ShowDataDialog extends Dialog{
             @Override
             public void onClick(View v) {
                 dismiss();
+            }
+        });
+        btnDecrypt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    txtKey.setText(EncrytedUtils.Decrypt(mData));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        btnEncrypt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+
+                    txtKey.setText(mData.getEncrytKey());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
             }
         });
     }

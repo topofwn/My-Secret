@@ -20,12 +20,21 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+
+        android:layout_centerHorizontal="true"
+        >
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="3dp"
         android:text="Key name:"
-        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
         android:background="@color/gray"
         android:textSize="18dp"
         android:textColor="@color/black"
@@ -38,23 +47,51 @@
         android:text="Your key:"
         android:background="@color/gray"
         android:textSize="18dp"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal= "true"
         android:textColor="@color/black"
         android:id="@+id/txtYourKey"
         android:layout_below="@id/txtKeyName"
         android:layout_marginTop="20dp"
         />
-    <ImageButton
-
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@drawable/bg_button_change_state"
         android:id="@+id/btnCopyClipboard"
-        android:layout_below="@id/txtKeyName"
+        android:layout_below="@id/txtYourKey"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="15dp"
-        android:layout_toRightOf="@id/txtYourKey"
-        android:src="@drawable/ic_content_copy_black_24dp"
+        android:text="Copy"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:padding="5dp"
+        android:textSize="15dp"
         />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnEncrypt"
+        android:layout_below="@+id/btnCopyClipboard"
+        android:layout_centerInParent="true"
+        android:text="Encrypt"
+        android:textSize="15dp"
+        android:padding="5dp"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/white"
+        android:background="@drawable/bg_button_change_state"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnDecrypt"
+        android:padding="5dp"
+        android:layout_below="@+id/btnEncrypt"
+        android:layout_centerInParent="true"
+        android:text="Decrypt"
+        android:textSize="15dp"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/white"
+        android:background="@drawable/bg_button_change_state"
+        />
+    </RelativeLayout>
 </RelativeLayout>
 </RelativeLayout>
