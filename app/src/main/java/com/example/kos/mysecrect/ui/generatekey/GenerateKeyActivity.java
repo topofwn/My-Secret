@@ -106,7 +106,7 @@ public class GenerateKeyActivity extends BaseActivity implements View.OnClickLis
             hideKeyboard();
             if (!edtName.getText().toString().equals("")){
 
-                    DataPWD newData = new DataPWD(edtName.getText().toString(), key.getText().toString(),getRandomString(5));
+                    DataPWD newData = new DataPWD(edtName.getText().toString(), key.getText().toString(),edtName.getText().toString());
                 try {
                     newData = EncrytedUtils.Encrypt(newData);
                 } catch (Exception e) {
