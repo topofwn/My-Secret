@@ -1,0 +1,283 @@
+:Monkey: seed=1536430096943 count=1000
+:AllowPackage: com.example.kos.mysecrect
+:IncludeCategory: android.intent.category.LAUNCHER
+:IncludeCategory: android.intent.category.MONKEY
+// Event percentages:
+//   0: 15.0%
+//   1: 10.0%
+//   2: 2.0%
+//   3: 15.0%
+//   4: -0.0%
+//   5: 25.0%
+//   6: 15.0%
+//   7: 2.0%
+//   8: 2.0%
+//   9: 1.0%
+//   10: 13.0%
+:Switch: #Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;launchFlags=0x10200000;component=com.example.kos.mysecrect/.ui.homepage.HomePageActivity;end
+    // Allowing start of Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.example.kos.mysecrect/.ui.homepage.HomePageActivity } in package com.example.kos.mysecrect
+:Sending Touch (ACTION_DOWN): 0:(28.0,818.0)
+:Sending Touch (ACTION_UP): 0:(31.118591,818.1767)
+:Sending Trackball (ACTION_MOVE): 0:(3.0,1.0)
+    // Rejecting start of Intent { act=com.coloros.recents.SHOW_RECENTS flg=0x10804000 cmp=com.coloros.recents/.RecentsActivity } in package com.coloros.recents
+:Sending Trackball (ACTION_MOVE): 0:(2.0,-3.0)
+:Sending Trackball (ACTION_MOVE): 0:(-3.0,-1.0)
+:Sending Trackball (ACTION_MOVE): 0:(2.0,-5.0)
+:Sending Touch (ACTION_DOWN): 0:(157.0,829.0)
+    // Allowing start of Intent { cmp=com.example.kos.mysecrect/.ui.manualgenerate.ManualGenerateActivity } in package com.example.kos.mysecrect
+:Sending Touch (ACTION_UP): 0:(79.22839,752.5581)
+:Sending Touch (ACTION_DOWN): 0:(173.0,504.0)
+:Sending Touch (ACTION_UP): 0:(164.35759,514.02435)
+:Sending Touch (ACTION_DOWN): 0:(283.0,348.0)
+:Sending Touch (ACTION_UP): 0:(281.66687,356.72034)
+:Sending Touch (ACTION_DOWN): 0:(644.0,244.0)
+:Sending Touch (ACTION_UP): 0:(636.3769,241.2349)
+:Sending Trackball (ACTION_MOVE): 0:(-1.0,0.0)
+:Sending Trackball (ACTION_MOVE): 0:(1.0,-5.0)
+    //[calendar_time:2018-09-04 16:37:53.061  system_uptime:779659572]
+    // Sending event #100
+:Sending Trackball (ACTION_MOVE): 0:(-5.0,-2.0)
+:Sending Touch (ACTION_DOWN): 0:(448.0,1019.0)
+:Sending Touch (ACTION_UP): 0:(439.02756,1022.0035)
+:Sending Touch (ACTION_DOWN): 0:(283.0,562.0)
+:Sending Touch (ACTION_UP): 0:(286.45963,580.08545)
+:Sending Trackball (ACTION_MOVE): 0:(-3.0,-4.0)
+:Sending Touch (ACTION_DOWN): 0:(683.0,1262.0)
+:Sending Touch (ACTION_UP): 0:(667.73065,1239.6248)
+:Sending Touch (ACTION_DOWN): 0:(557.0,47.0)
+    // activityResuming(com.example.kos.mysecrect)
+:Sending Touch (ACTION_UP): 0:(561.8519,42.51624)
+:Sending Trackball (ACTION_MOVE): 0:(-4.0,3.0)
+    // Allowing start of Intent { cmp=com.example.kos.mysecrect/.ui.manualgenerate.ManualGenerateActivity } in package com.example.kos.mysecrect
+:Sending Touch (ACTION_DOWN): 0:(35.0,335.0)
+:Sending Touch (ACTION_UP): 0:(45.855934,331.72165)
+:Sending Trackball (ACTION_MOVE): 0:(4.0,0.0)
+    // Allowing start of Intent { cmp=com.example.kos.mysecrect/.ui.manualgenerate.ManualGenerateActivity } in package com.example.kos.mysecrect
+    // Rejecting start of Intent { act=com.coloros.recents.SHOW_RECENTS flg=0x10804000 cmp=com.coloros.recents/.RecentsActivity } in package com.coloros.recents
+:Sending Trackball (ACTION_MOVE): 0:(-1.0,-3.0)
+    //[calendar_time:2018-09-04 16:37:54.487  system_uptime:779660950]
+    // Sending event #200
+:Sending Touch (ACTION_DOWN): 0:(588.0,677.0)
+:Sending Touch (ACTION_UP): 0:(607.08044,665.3026)
+:Sending Trackball (ACTION_MOVE): 0:(1.0,-5.0)
+:Sending Trackball (ACTION_UP): 0:(0.0,0.0)
+:Sending Touch (ACTION_DOWN): 0:(302.0,250.0)
+:Sending Touch (ACTION_UP): 0:(300.7351,246.17357)
+:Switch: #Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;launchFlags=0x10200000;component=com.example.kos.mysecrect/.ui.homepage.HomePageActivity;end
+    // Allowing start of Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.example.kos.mysecrect/.ui.homepage.HomePageActivity } in package com.example.kos.mysecrect
+:Sending Trackball (ACTION_MOVE): 0:(-4.0,-2.0)
+:Sending Touch (ACTION_DOWN): 0:(202.0,826.0)
+:Sending Touch (ACTION_UP): 0:(203.13522,835.8738)
+:Sending Touch (ACTION_DOWN): 0:(303.0,118.0)
+:Sending Touch (ACTION_UP): 0:(293.54883,117.43752)
+:Sending Trackball (ACTION_MOVE): 0:(1.0,1.0)
+:Sending Touch (ACTION_DOWN): 0:(219.0,862.0)
+:Sending Touch (ACTION_UP): 0:(219.02486,863.70435)
+    // Rejecting start of Intent { act=android.intent.action.ASSIST flg=0x34000000 cmp=com.google.android.googlequicksearchbox/.SearchActivity (has extras) } in package com.google.android.googlequicksearchbox
+    // Rejecting start of Intent { act=android.intent.action.MAIN cat=[android.intent.category.HOME] flg=0x10200000 cmp=com.oppo.launcher/.Launcher } in package com.oppo.launcher
+    //[calendar_time:2018-09-04 16:37:55.352  system_uptime:779661815]
+    // Sending event #300
+    //[calendar_time:2018-09-04 16:37:55.353  system_uptime:779661815]
+    // Sending event #300
+:Sending Touch (ACTION_DOWN): 0:(623.0,522.0)
+:Sending Touch (ACTION_UP): 0:(641.6429,544.5625)
+:Sending Trackball (ACTION_MOVE): 0:(0.0,4.0)
+:Sending Flip keyboardOpen=false
+Got IOException performing flipjava.io.IOException: write failed: EINVAL (Invalid argument)
+    // Injection Failed
+    // Injection Failed
+:Sending Touch (ACTION_DOWN): 0:(643.0,871.0)
+:Sending Touch (ACTION_UP): 0:(639.9913,880.1461)
+:Sending Touch (ACTION_DOWN): 0:(553.0,378.0)
+:Sending Touch (ACTION_UP): 0:(546.8138,377.03882)
+:Sending Touch (ACTION_DOWN): 0:(284.0,594.0)
+:Sending Touch (ACTION_UP): 0:(287.81506,585.2846)
+:Sending Touch (ACTION_DOWN): 0:(665.0,379.0)
+:Sending Touch (ACTION_UP): 0:(663.00287,382.22913)
+    // Rejecting start of Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10000000 cmp=com.android.contacts/.PeopleActivityAlias sel=act=android.intent.action.MAIN cat=[android.intent.category.APP_CONTACTS]} } in package com.android.contacts
+:Sending Touch (ACTION_DOWN): 0:(271.0,344.0)
+    // Rejecting start of Intent { act=com.coloros.recents.SHOW_RECENTS flg=0x10804000 cmp=com.coloros.recents/.RecentsActivity } in package com.coloros.recents
+:Sending Touch (ACTION_UP): 0:(124.71163,433.52078)
+:Switch: #Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;launchFlags=0x10200000;component=com.example.kos.mysecrect/.ui.homepage.HomePageActivity;end
+    // Allowing start of Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.example.kos.mysecrect/.ui.homepage.HomePageActivity } in package com.example.kos.mysecrect
+:Sending Touch (ACTION_DOWN): 0:(716.0,1220.0)
+:Sending Touch (ACTION_UP): 0:(676.86566,1248.7493)
+:Sending Touch (ACTION_DOWN): 0:(585.0,1125.0)
+:Sending Touch (ACTION_UP): 0:(594.77496,1130.1353)
+:Sending Touch (ACTION_DOWN): 0:(100.0,337.0)
+:Sending Touch (ACTION_UP): 0:(102.38324,338.64478)
+:Sending Trackball (ACTION_MOVE): 0:(0.0,1.0)
+:Sending Trackball (ACTION_UP): 0:(0.0,0.0)
+:Sending Touch (ACTION_DOWN): 0:(309.0,932.0)
+:Sending Touch (ACTION_UP): 0:(325.94412,960.93896)
+    // Rejecting start of Intent { act=android.intent.action.MAIN cat=[android.intent.category.HOME] flg=0x10200000 cmp=com.oppo.launcher/.Launcher } in package com.oppo.launcher
+:Sending Touch (ACTION_DOWN): 0:(81.0,5.0)
+:Sending Touch (ACTION_UP): 0:(81.51202,3.5930958)
+    //[calendar_time:2018-09-04 16:37:56.259  system_uptime:779662722]
+    // Sending event #400
+:Sending Touch (ACTION_DOWN): 0:(634.0,669.0)
+:Sending Touch (ACTION_UP): 0:(606.9006,688.26373)
+    // Injection Failed
+:Sending Touch (ACTION_DOWN): 0:(594.0,1268.0)
+:Sending Touch (ACTION_UP): 0:(603.76733,1266.9769)
+:Switch: #Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;launchFlags=0x10200000;component=com.example.kos.mysecrect/.ui.homepage.HomePageActivity;end
+    // Allowing start of Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.example.kos.mysecrect/.ui.homepage.HomePageActivity } in package com.example.kos.mysecrect
+:Sending Touch (ACTION_DOWN): 0:(503.0,299.0)
+:Sending Touch (ACTION_UP): 0:(514.96576,310.8982)
+:Sending Touch (ACTION_DOWN): 0:(561.0,1152.0)
+:Sending Touch (ACTION_UP): 0:(561.78064,1166.4457)
+:Sending Touch (ACTION_DOWN): 0:(494.0,367.0)
+:Sending Touch (ACTION_UP): 0:(459.59103,349.32227)
+:Sending Touch (ACTION_DOWN): 0:(97.0,1082.0)
+:Sending Touch (ACTION_UP): 0:(0.0,977.1386)
+:Sending Trackball (ACTION_MOVE): 0:(3.0,3.0)
+:Sending Touch (ACTION_DOWN): 0:(190.0,579.0)
+:Sending Touch (ACTION_UP): 0:(181.90216,578.33673)
+:Sending Trackball (ACTION_MOVE): 0:(-2.0,2.0)
+:Sending Trackball (ACTION_MOVE): 0:(-2.0,-4.0)
+:Sending Touch (ACTION_DOWN): 0:(373.0,206.0)
+:Sending Touch (ACTION_UP): 0:(265.11743,166.36018)
+:Sending Touch (ACTION_DOWN): 0:(651.0,475.0)
+:Sending Touch (ACTION_UP): 0:(651.60645,479.31183)
+:Sending Touch (ACTION_DOWN): 0:(128.0,1085.0)
+:Sending Touch (ACTION_UP): 0:(128.0385,1086.3088)
+    //[calendar_time:2018-09-04 16:37:57.174  system_uptime:779663637]
+    // Sending event #500
+    //[calendar_time:2018-09-04 16:37:57.175  system_uptime:779663638]
+    // Sending event #500
+:Sending Touch (ACTION_DOWN): 0:(640.0,668.0)
+    // Rejecting start of Intent { act=com.coloros.recents.SHOW_RECENTS flg=0x10804000 cmp=com.coloros.recents/.RecentsActivity } in package com.coloros.recents
+:Sending Touch (ACTION_UP): 0:(602.46783,655.206)
+:Sending Trackball (ACTION_MOVE): 0:(3.0,-1.0)
+:Sending Touch (ACTION_DOWN): 0:(463.0,1257.0)
+:Sending Touch (ACTION_UP): 0:(463.22638,1256.8046)
+:Sending Touch (ACTION_DOWN): 0:(61.0,1088.0)
+:Sending Touch (ACTION_UP): 0:(153.06346,1083.2974)
+    // Rejecting start of Intent { act=android.intent.action.ASSIST flg=0x34000000 cmp=com.google.android.googlequicksearchbox/.SearchActivity (has extras) } in package com.google.android.googlequicksearchbox
+:Sending Trackball (ACTION_MOVE): 0:(-4.0,-1.0)
+:Sending Touch (ACTION_DOWN): 0:(15.0,1110.0)
+:Sending Touch (ACTION_UP): 0:(0.0,1142.4662)
+:Sending Touch (ACTION_DOWN): 0:(259.0,500.0)
+:Sending Touch (ACTION_UP): 0:(253.8288,512.7448)
+:Sending Flip keyboardOpen=true
+Got IOException performing flipjava.io.IOException: write failed: EINVAL (Invalid argument)
+    // Injection Failed
+:Sending Trackball (ACTION_MOVE): 0:(3.0,4.0)
+:Sending Trackball (ACTION_UP): 0:(0.0,0.0)
+:Sending Trackball (ACTION_MOVE): 0:(-4.0,-5.0)
+    //[calendar_time:2018-09-04 16:37:57.578  system_uptime:779664041]
+    // Sending event #600
+:Sending Touch (ACTION_DOWN): 0:(681.0,480.0)
+:Sending Touch (ACTION_UP): 0:(689.12305,465.3059)
+:Sending Touch (ACTION_DOWN): 0:(36.0,147.0)
+:Sending Touch (ACTION_UP): 0:(47.77342,148.32901)
+:Sending Touch (ACTION_DOWN): 0:(419.0,1038.0)
+:Sending Touch (ACTION_UP): 0:(437.5306,1048.4237)
+:Sending Touch (ACTION_DOWN): 0:(310.0,114.0)
+    // activityResuming(com.example.kos.mysecrect)
+:Sending Touch (ACTION_UP): 0:(358.89117,98.93792)
+:Sending Touch (ACTION_DOWN): 0:(620.0,970.0)
+:Sending Touch (ACTION_UP): 0:(604.5323,969.2888)
+:Sending Trackball (ACTION_MOVE): 0:(0.0,-1.0)
+:Sending Touch (ACTION_DOWN): 0:(14.0,527.0)
+:Sending Touch (ACTION_UP): 0:(0.0,527.2293)
+:Sending Touch (ACTION_DOWN): 0:(3.0,488.0)
+:Sending Touch (ACTION_UP): 0:(0.0,460.345)
+:Sending Trackball (ACTION_MOVE): 0:(-2.0,3.0)
+    // Rejecting start of Intent { act=com.coloros.recents.SHOW_RECENTS flg=0x10804000 cmp=com.coloros.recents/.RecentsActivity } in package com.coloros.recents
+:Sending Trackball (ACTION_UP): 0:(0.0,0.0)
+:Sending Touch (ACTION_DOWN): 0:(131.0,507.0)
+:Sending Touch (ACTION_UP): 0:(142.38173,505.90466)
+:Sending Touch (ACTION_DOWN): 0:(694.0,812.0)
+:Sending Touch (ACTION_UP): 0:(720.0,797.74744)
+:Sending Trackball (ACTION_MOVE): 0:(4.0,0.0)
+:Sending Touch (ACTION_DOWN): 0:(233.0,324.0)
+    //[calendar_time:2018-09-04 16:37:58.085  system_uptime:779664547]
+    // Sending event #700
+:Sending Touch (ACTION_UP): 0:(231.15065,341.95065)
+:Sending Touch (ACTION_DOWN): 0:(137.0,346.0)
+:Sending Touch (ACTION_UP): 0:(144.98212,396.8089)
+:Sending Touch (ACTION_DOWN): 0:(700.0,111.0)
+:Sending Touch (ACTION_UP): 0:(700.44666,118.66638)
+:Sending Touch (ACTION_DOWN): 0:(497.0,795.0)
+:Sending Touch (ACTION_UP): 0:(489.8166,798.5464)
+    // activityResuming(com.example.kos.mysecrect)
+:Sending Touch (ACTION_DOWN): 0:(307.0,533.0)
+    // Injection Failed
+:Sending Touch (ACTION_UP): 0:(298.59546,533.7553)
+    // Injection Failed
+:Sending Touch (ACTION_DOWN): 0:(622.0,510.0)
+    // Injection Failed
+    // Injection Failed
+:Sending Touch (ACTION_UP): 0:(611.4137,526.55615)
+    // Injection Failed
+:Sending Touch (ACTION_DOWN): 0:(637.0,257.0)
+    // Injection Failed
+:Sending Touch (ACTION_UP): 0:(624.4984,254.42165)
+    // Injection Failed
+:Sending Touch (ACTION_DOWN): 0:(553.0,216.0)
+:Sending Touch (ACTION_UP): 0:(541.20593,218.62062)
+:Sending Touch (ACTION_DOWN): 0:(59.0,17.0)
+:Sending Touch (ACTION_UP): 0:(81.130936,31.441359)
+:Sending Touch (ACTION_DOWN): 0:(360.0,26.0)
+:Sending Touch (ACTION_UP): 0:(361.59872,32.30387)
+:Sending Trackball (ACTION_MOVE): 0:(-1.0,3.0)
+:Sending Touch (ACTION_DOWN): 0:(429.0,691.0)
+:Sending Touch (ACTION_UP): 0:(429.24097,703.892)
+    // Allowing start of Intent { cmp=com.example.kos.mysecrect/.ui.generatekey.GenerateKeyActivity } in package com.example.kos.mysecrect
+:Sending Trackball (ACTION_MOVE): 0:(-1.0,-2.0)
+:Sending Trackball (ACTION_MOVE): 0:(-4.0,-2.0)
+    // Allowing start of Intent { cmp=com.example.kos.mysecrect/.ui.pwdstore.PWDStoreActivity } in package com.example.kos.mysecrect
+:Sending Trackball (ACTION_MOVE): 0:(-5.0,1.0)
+:Sending Trackball (ACTION_MOVE): 0:(-1.0,-4.0)
+    //[calendar_time:2018-09-04 16:37:58.609  system_uptime:779665072]
+    // Sending event #800
+:Sending Touch (ACTION_DOWN): 0:(210.0,525.0)
+:Sending Touch (ACTION_UP): 0:(222.68413,531.47046)
+:Switch: #Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;launchFlags=0x10200000;component=com.example.kos.mysecrect/.ui.homepage.HomePageActivity;end
+    // Allowing start of Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.example.kos.mysecrect/.ui.homepage.HomePageActivity } in package com.example.kos.mysecrect
+:Sending Trackball (ACTION_MOVE): 0:(0.0,4.0)
+    // activityResuming(com.example.kos.mysecrect)
+    // activityResuming(com.example.kos.mysecrect)
+:Sending Touch (ACTION_DOWN): 0:(697.0,1275.0)
+:Sending Touch (ACTION_UP): 0:(706.9586,1267.0775)
+:Sending Trackball (ACTION_MOVE): 0:(0.0,-2.0)
+:Sending Trackball (ACTION_MOVE): 0:(-2.0,-1.0)
+:Sending Touch (ACTION_DOWN): 0:(328.0,836.0)
+:Sending Touch (ACTION_UP): 0:(328.59076,827.7141)
+:Sending Trackball (ACTION_MOVE): 0:(-3.0,-1.0)
+:Sending Touch (ACTION_DOWN): 0:(174.0,1072.0)
+:Sending Touch (ACTION_UP): 0:(169.99109,1066.8274)
+:Sending Touch (ACTION_DOWN): 0:(190.0,249.0)
+:Sending Touch (ACTION_UP): 0:(186.62006,238.39912)
+:Sending Trackball (ACTION_MOVE): 0:(-4.0,2.0)
+    // activityResuming(com.example.kos.mysecrect)
+    // activityResuming(com.example.kos.mysecrect)
+:Sending Trackball (ACTION_UP): 0:(0.0,0.0)
+:Sending Trackball (ACTION_MOVE): 0:(4.0,-4.0)
+    //[calendar_time:2018-09-04 16:37:59.197  system_uptime:779665660]
+    // Sending event #900
+    // activityResuming(com.example.kos.mysecrect)
+    // activityResuming(com.example.kos.mysecrect)
+:Sending Touch (ACTION_DOWN): 0:(213.0,872.0)
+:Sending Touch (ACTION_UP): 0:(214.46097,865.9556)
+    // Rejecting start of Intent { act=com.coloros.recents.SHOW_RECENTS flg=0x10804000 cmp=com.coloros.recents/.RecentsActivity } in package com.coloros.recents
+    // Allowing start of Intent { cmp=com.example.kos.mysecrect/.ui.manualgenerate.ManualGenerateActivity } in package com.example.kos.mysecrect
+:Sending Touch (ACTION_DOWN): 0:(283.0,995.0)
+:Sending Touch (ACTION_UP): 0:(271.39227,1013.58307)
+:Sending Touch (ACTION_DOWN): 0:(502.0,964.0)
+:Sending Touch (ACTION_UP): 0:(520.08606,952.226)
+:Sending Trackball (ACTION_MOVE): 0:(-4.0,2.0)
+:Sending Trackball (ACTION_UP): 0:(0.0,0.0)
+:Sending Touch (ACTION_DOWN): 0:(649.0,817.0)
+:Sending Touch (ACTION_UP): 0:(648.1791,817.00244)
+:Sending Touch (ACTION_DOWN): 0:(380.0,843.0)
+:Sending Touch (ACTION_UP): 0:(379.88635,829.0864)
+:Sending Trackball (ACTION_MOVE): 0:(-2.0,4.0)
+:Sending Trackball (ACTION_UP): 0:(0.0,0.0)
+:Sending Trackball (ACTION_MOVE): 0:(1.0,2.0)
+Events injected: 1000
+:Sending rotation degree=0, persist=false
+:Dropped: keys=2 pointers=7 trackballs=0 flips=2 rotations=0
+## Network stats: elapsed time=7588ms (0ms mobile, 0ms wifi, 7588ms not connected)
+// Monkey finished

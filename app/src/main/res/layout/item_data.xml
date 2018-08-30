@@ -14,8 +14,6 @@
     android:layout_height="wrap_content"
     android:id="@+id/txtKeyName"
     android:padding="3dp"
-
-    android:layout_marginLeft="25dp"
     android:textSize="18dp"
     android:textColor="@color/white"
     android:layout_gravity="center_vertical"

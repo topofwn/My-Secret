@@ -34,7 +34,7 @@
             android:imeOptions="actionNext"
             android:id="@+id/edtApplication"
             android:background="@color/white"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="8dp"
             app:layout_constraintLeft_toRightOf="@+id/txtApplication"
             app:layout_constraintRight_toRightOf="parent"
             />
