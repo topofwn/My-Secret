@@ -32,4 +32,9 @@ public class ManualGeneratePresenter<V extends ManualGenerateContract.View> exte
     public void setList(List<DataPWD> data) {
         dataManager.setListData(data);
     }
+
+    @Override
+    public String getMyDeviceId() {
+        return dataManager.getDeviceId();
+    }
 }

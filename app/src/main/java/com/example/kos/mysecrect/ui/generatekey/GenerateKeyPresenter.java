@@ -33,5 +33,10 @@ public class GenerateKeyPresenter <V extends GenerateKeyContract.View> extends B
         dataManager.setListData(data);
     }
 
+    @Override
+    public String getMyDeviceId() {
+        return dataManager.getDeviceId();
+    }
+
 
 }

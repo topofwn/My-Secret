@@ -33,4 +33,9 @@ public class HomePagePresenter <V extends HomePageContract.View> extends BasePre
         dataManager.setListData(data);
     }
 
+    @Override
+    public String getMyDeviceId() {
+        return dataManager.getDeviceId();
+    }
+
 }

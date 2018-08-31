@@ -112,7 +112,7 @@ public class GenerateKeyActivity extends BaseActivity implements View.OnClickLis
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                FirebaseUtils.addNewField(newData);
+                FirebaseUtils.addNewField(newData,mPresenter.getMyDeviceId());
                     List<DataPWD> tempList = mPresenter.getList();
                     tempList.add(newData);
                     mPresenter.setList(tempList);

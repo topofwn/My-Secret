@@ -13,7 +13,7 @@ public interface GenerateKeyContract  {
     {
         List<DataPWD> getList();
         void setList(List<DataPWD> data);
-
+        String getMyDeviceId();
     }
     interface View extends MVPView {
 

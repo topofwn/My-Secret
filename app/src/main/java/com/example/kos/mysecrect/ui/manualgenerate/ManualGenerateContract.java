@@ -10,6 +10,7 @@ public interface ManualGenerateContract {
     interface Presenter<V extends ManualGenerateContract.View> extends MVPPresenter<V> {
         List<DataPWD> getList();
         void setList(List<DataPWD> data);
+        String getMyDeviceId();
 
     }
     interface View extends MVPView {

@@ -10,6 +10,7 @@ public interface HomePageContract {
     interface Presenter<V extends View> extends MVPPresenter<V> {
     void setMyDeviceId(String id);
     void setListData(List<DataPWD> data);
+    String getMyDeviceId();
 
     }
     interface View extends MVPView {
