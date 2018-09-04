@@ -43,24 +43,6 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         initView();
-
-        Handler handler = new Handler();
-        handler.post(() -> {
-            Thread tr = new Thread(() -> {
-                AdvertisingIdClient.Info adInfo;
-                String id;
-                try {
-                    adInfo = AdvertisingIdClient.getAdvertisingIdInfo(getApplicationContext());
-                    id = adInfo.getId();
-                    mPresenter.setMyDeviceId(id);
-                } catch (IOException | GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException exception) {
-                    // Encountered a recoverable error connecting to Google Play services.
-                    OGILVYLog.l(exception);
-                }
-            });
-            tr.start();
-        });
-        updateProgressBar(50);
         mPresenter.onAttach(this);
         mPresenter.onViewInitialized();
         initData();
@@ -90,6 +72,24 @@ protected void onStart() {
 
     @Override
     protected void initData() {
+
+        Handler handler = new Handler();
+        handler.post(() -> {
+            Thread tr = new Thread(() -> {
+                AdvertisingIdClient.Info adInfo;
+                String id;
+                try {
+                    adInfo = AdvertisingIdClient.getAdvertisingIdInfo(getApplicationContext());
+                    id = adInfo.getId();
+                    mPresenter.setMyDeviceId(id);
+                } catch (IOException | GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException exception) {
+                    // Encountered a recoverable error connecting to Google Play services.
+                    OGILVYLog.l(exception);
+                }
+            });
+            tr.start();
+        });
+        updateProgressBar(50);
         List<DataPWD> myArray = new ArrayList<>();
         CollectionReference col = db.collection("DataPWd");
         col.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
