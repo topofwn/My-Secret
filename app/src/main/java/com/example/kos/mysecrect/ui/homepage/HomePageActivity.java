@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import com.example.kos.mysecrect.R;
 import com.example.kos.mysecrect.data.model.DataPWD;
+import com.example.kos.mysecrect.data.model.UserD;
 import com.example.kos.mysecrect.ui.base.BaseActivity;
 import com.example.kos.mysecrect.ui.generatekey.GenerateKeyActivity;
 import com.example.kos.mysecrect.ui.manualgenerate.ManualGenerateActivity;
@@ -20,6 +21,8 @@ import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -31,7 +34,9 @@ import java.util.List;
 public class HomePageActivity extends BaseActivity implements View.OnClickListener {
     private HomePagePresenter mPresenter = new HomePagePresenter();
     private Button btnGenerate, btnMykey,btnManual;
-
+    private FirebaseFirestore db;
+    private static final String USER_KEY_DATA = "USER_KEY_DATA" ;
+    private UserD user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +69,25 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void initData() {
-
+        Bundle data = this.getIntent().getExtras();
+        if(data.get(USER_KEY_DATA) != null){
+             user = (UserD) data.get(USER_KEY_DATA);
+        }
+        db = FirebaseFirestore.getInstance();
+        List<DataPWD> myArray = new ArrayList<>();
+        showLoading();
+        DocumentReference col = db.collection("DataPWd").document(user.getId());
+        col.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                UserD user = documentSnapshot.toObject(UserD.class);
+                List<DataPWD> mArray = new ArrayList<>();
+                if(user.getListData() != null){
+                   mArray = user.getListData();
+                }
+                mPresenter.setListData(mArray);
+            }
+        });
     }
 
     @Override

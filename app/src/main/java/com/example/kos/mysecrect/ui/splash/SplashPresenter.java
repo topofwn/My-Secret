@@ -2,6 +2,7 @@ package com.example.kos.mysecrect.ui.splash;
 
 import com.example.kos.mysecrect.data.DataManager;
 import com.example.kos.mysecrect.data.model.DataPWD;
+import com.example.kos.mysecrect.data.model.UserD;
 import com.example.kos.mysecrect.ui.base.BasePresenter;
 import com.example.kos.mysecrect.utils.SchedulerProvider;
 
@@ -31,8 +32,12 @@ public class SplashPresenter <V extends SplashContract.View> extends BasePresent
     }
 
     @Override
-    public String getMyDeviceId() {
-        return dataManager.getDeviceId();
+    public List<DataPWD> getListData() {
+        return dataManager.getListData();
     }
+
+
+
+
 }
 

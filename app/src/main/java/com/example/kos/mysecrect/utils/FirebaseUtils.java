@@ -3,6 +3,7 @@ package com.example.kos.mysecrect.utils;
 import android.util.Log;
 
 import com.example.kos.mysecrect.data.model.DataPWD;
+import com.example.kos.mysecrect.data.model.UserD;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -19,14 +20,10 @@ public class FirebaseUtils {
     }
 
 
-
-
-
-
-    public static void addNewField(DataPWD Ndata,String deviceid){
+    public static void addNewField(UserD data, String deviceid){
         getInstance();
-        CollectionReference col = db.collection("DataPWd");
-        col.add(Ndata);
+        DocumentReference col = db.collection("DataPWd").document(deviceid);
+        col.set(data);
 
     }
 

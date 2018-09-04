@@ -8,8 +8,10 @@ import android.widget.ProgressBar;
 
 import com.example.kos.mysecrect.R;
 import com.example.kos.mysecrect.data.model.DataPWD;
+import com.example.kos.mysecrect.data.model.UserD;
 import com.example.kos.mysecrect.ui.base.BaseActivity;
 import com.example.kos.mysecrect.ui.homepage.HomePageActivity;
+import com.example.kos.mysecrect.ui.login.LoginActivity;
 import com.example.kos.mysecrect.utils.ActivityUtils;
 import com.example.kos.mysecrect.utils.Injections;
 import com.example.kos.mysecrect.utils.OGILVYLog;
@@ -29,10 +31,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SplashActivity extends BaseActivity implements View.OnClickListener, SplashContract.View {
+
     private SplashPresenter mPresenter = new SplashPresenter();
     private ProgressBar mProgressBar;
     private FirebaseFirestore db;
-    private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,23 +81,9 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
             });
             tr.start();
         });
+        updateProgressBar(90);
+        gotoLogin();
 
-        db = FirebaseFirestore.getInstance();
-        List<DataPWD> myArray = new ArrayList<>();
-        CollectionReference col = db.collection("DataPWd");
-        col.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for(QueryDocumentSnapshot document : queryDocumentSnapshots){
-                    DataPWD data = document.toObject(DataPWD.class);
-                    myArray.add(data);
-                }
-                mPresenter.setListData(myArray);
-                updateProgressBar(80);
-                gotoHomePage();
-            }
-
-        });
     }
 
     @Override
@@ -104,8 +93,9 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
         }
     }
 
+
     @Override
-    public void gotoHomePage() {
-        ActivityUtils.startActivity(SplashActivity.this,HomePageActivity.class,true);
+    public void gotoLogin() {
+        ActivityUtils.startActivity(SplashActivity.this, LoginActivity.class,true);
     }
 }

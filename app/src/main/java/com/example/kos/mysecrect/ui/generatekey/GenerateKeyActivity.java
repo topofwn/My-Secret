@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.kos.mysecrect.R;
 import com.example.kos.mysecrect.data.model.DataPWD;
+import com.example.kos.mysecrect.data.model.UserD;
 import com.example.kos.mysecrect.ui.base.BaseActivity;
 import com.example.kos.mysecrect.utils.EncrytedUtils;
 import com.example.kos.mysecrect.utils.FirebaseUtils;
@@ -112,10 +113,14 @@ public class GenerateKeyActivity extends BaseActivity implements View.OnClickLis
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                FirebaseUtils.addNewField(newData,mPresenter.getMyDeviceId());
+
                     List<DataPWD> tempList = mPresenter.getList();
                     tempList.add(newData);
                     mPresenter.setList(tempList);
+                UserD user = mPresenter.getUser();
+                user.setListData(tempList);
+                mPresenter.setUser(user);
+                FirebaseUtils.addNewField(user,mPresenter.getMyDeviceId());
                     UIUtils.showToast(getApplicationContext(),"Saved successfully");
 
             }else {

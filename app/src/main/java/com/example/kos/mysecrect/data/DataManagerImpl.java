@@ -4,6 +4,7 @@ import android.content.Context;
 
 
 import com.example.kos.mysecrect.data.model.DataPWD;
+import com.example.kos.mysecrect.data.model.UserD;
 import com.example.kos.mysecrect.data.snappy.MySnappyImpl;
 
 import java.util.List;
@@ -54,5 +55,15 @@ public class DataManagerImpl implements DataManager {
     @Override
     public List<DataPWD> getListData() {
         return mySnappy.getListData();
+    }
+
+    @Override
+    public void setUser(UserD user) {
+        mySnappy.setUser(user);
+    }
+
+    @Override
+    public UserD getUser() {
+        return mySnappy.getUser();
     }
 }

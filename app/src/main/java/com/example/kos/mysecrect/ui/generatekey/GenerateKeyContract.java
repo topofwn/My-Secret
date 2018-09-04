@@ -2,6 +2,7 @@ package com.example.kos.mysecrect.ui.generatekey;
 
 
 import com.example.kos.mysecrect.data.model.DataPWD;
+import com.example.kos.mysecrect.data.model.UserD;
 import com.example.kos.mysecrect.ui.base.MVPPresenter;
 import com.example.kos.mysecrect.ui.base.MVPView;
 
@@ -14,6 +15,8 @@ public interface GenerateKeyContract  {
         List<DataPWD> getList();
         void setList(List<DataPWD> data);
         String getMyDeviceId();
+        UserD getUser();
+        void setUser(UserD user);
     }
     interface View extends MVPView {
 

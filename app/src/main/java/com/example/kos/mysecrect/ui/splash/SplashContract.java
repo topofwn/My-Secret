@@ -1,6 +1,7 @@
 package com.example.kos.mysecrect.ui.splash;
 
 import com.example.kos.mysecrect.data.model.DataPWD;
+import com.example.kos.mysecrect.data.model.UserD;
 import com.example.kos.mysecrect.ui.base.MVPPresenter;
 import com.example.kos.mysecrect.ui.base.MVPView;
 
@@ -10,12 +11,14 @@ public interface SplashContract {
     interface Presenter<V extends View> extends MVPPresenter<V> {
         void setMyDeviceId(String id);
         void setListData(List<DataPWD> data);
-        String getMyDeviceId();
+        List<DataPWD> getListData();
+
 
     }
     interface View extends MVPView {
         void updateProgressBar(int count);
-        void gotoHomePage();
+
+        void gotoLogin();
     }
 
 }

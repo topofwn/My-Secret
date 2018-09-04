@@ -11,6 +11,7 @@ import android.widget.EditText;
 
 import com.example.kos.mysecrect.R;
 import com.example.kos.mysecrect.data.model.DataPWD;
+import com.example.kos.mysecrect.data.model.UserD;
 import com.example.kos.mysecrect.ui.base.BaseActivity;
 import com.example.kos.mysecrect.utils.EncrytedUtils;
 import com.example.kos.mysecrect.utils.FirebaseUtils;
@@ -104,7 +105,10 @@ public class ManualGenerateActivity extends BaseActivity implements View.OnClick
                     }
                     tempList.add(newData);
                         mPresenter.setList(tempList);
-                        FirebaseUtils.addNewField(newData,mPresenter.getMyDeviceId());
+                    UserD user = mPresenter.getUser();
+                    user.setListData(tempList);
+                    mPresenter.setUser(user);
+                        FirebaseUtils.addNewField(user,mPresenter.getUser().getId());
                         UIUtils.showToast(getApplicationContext(),"Saved successfully");
 
 

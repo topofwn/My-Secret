@@ -2,6 +2,7 @@ package com.example.kos.mysecrect.ui.manualgenerate;
 
 import com.example.kos.mysecrect.data.DataManager;
 import com.example.kos.mysecrect.data.model.DataPWD;
+import com.example.kos.mysecrect.data.model.UserD;
 import com.example.kos.mysecrect.ui.base.BasePresenter;
 import com.example.kos.mysecrect.utils.SchedulerProvider;
 
@@ -36,5 +37,15 @@ public class ManualGeneratePresenter<V extends ManualGenerateContract.View> exte
     @Override
     public String getMyDeviceId() {
         return dataManager.getDeviceId();
+    }
+
+    @Override
+    public UserD getUser() {
+        return dataManager.getUser();
+    }
+
+    @Override
+    public void setUser(UserD user) {
+        dataManager.setUser(user);
     }
 }

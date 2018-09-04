@@ -2,6 +2,7 @@ package com.example.kos.mysecrect.data;
 
 
 import com.example.kos.mysecrect.data.model.DataPWD;
+import com.example.kos.mysecrect.data.model.UserD;
 import com.example.kos.mysecrect.data.snappy.MySnappyDB;
 
 import java.util.List;
@@ -16,5 +17,6 @@ public interface DataManager extends  MySnappyDB {
     String getDeviceId();
     void setListData(List<DataPWD> listdata);
     List<DataPWD> getListData();
-
+    UserD getUser();
+    void setUser(UserD user);
 }

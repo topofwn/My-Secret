@@ -1,4 +1,4 @@
-package com.example.kos.mysecrect.ui.homepage;
+package com.example.kos.mysecrect.ui.registration;
 
 import com.example.kos.mysecrect.data.model.DataPWD;
 import com.example.kos.mysecrect.data.model.UserD;
@@ -7,14 +7,16 @@ import com.example.kos.mysecrect.ui.base.MVPView;
 
 import java.util.List;
 
-public interface HomePageContract {
+
+public interface RegistrationContract {
+
     interface Presenter<V extends View> extends MVPPresenter<V> {
-    UserD getUser();
-    void setListData(List<DataPWD> data);
+        List<DataPWD> getListData();
+        void setUser(UserD user);
 
 
     }
     interface View extends MVPView {
-
+        void gotoHomepage();
     }
 }

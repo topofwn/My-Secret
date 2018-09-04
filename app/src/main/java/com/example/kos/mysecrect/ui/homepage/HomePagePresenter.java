@@ -2,6 +2,7 @@ package com.example.kos.mysecrect.ui.homepage;
 
 import com.example.kos.mysecrect.data.DataManager;
 import com.example.kos.mysecrect.data.model.DataPWD;
+import com.example.kos.mysecrect.data.model.UserD;
 import com.example.kos.mysecrect.ui.base.BasePresenter;
 import com.example.kos.mysecrect.utils.SchedulerProvider;
 
@@ -24,18 +25,13 @@ public class HomePagePresenter <V extends HomePageContract.View> extends BasePre
 
 
     @Override
-    public void setMyDeviceId(String id) {
-        dataManager.setDeviceId(id);
+    public UserD getUser() {
+        return dataManager.getUser();
     }
 
     @Override
     public void setListData(List<DataPWD> data) {
         dataManager.setListData(data);
-    }
-
-    @Override
-    public String getMyDeviceId() {
-        return dataManager.getDeviceId();
     }
 
 }
