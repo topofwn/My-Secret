@@ -18,6 +18,7 @@ import com.example.kos.mysecrect.utils.UIUtils;
 
 public class ShowDataDialog extends Dialog{
     private Context mContext;
+    private int check = 0;
 
 
     public ShowDataDialog(@NonNull Context context, DataPWD mData) throws Exception {
@@ -37,9 +38,9 @@ public class ShowDataDialog extends Dialog{
         TextView txtFieldName = findViewById(R.id.txtKeyName);
         TextView txtKey = findViewById(R.id.txtYourKey);
         txtFieldName.setText(mData.getFieldName());
-        txtKey.setText(EncrytedUtils.Decrypt(mData));
-        Button btnEncrypt = findViewById(R.id.btnEncrypt);
-        Button btnDecrypt = findViewById(R.id.btnDecrypt);
+        txtKey.setText(mData.getEncrytKey());
+
+        Button btnCrypt = findViewById(R.id.btnCrypt);
         Button btnCopy = findViewById(R.id.btnCopyClipboard);
         btnCopy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,26 +59,26 @@ public class ShowDataDialog extends Dialog{
                 dismiss();
             }
         });
-        btnDecrypt.setOnClickListener(new View.OnClickListener() {
+        btnCrypt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    txtKey.setText(EncrytedUtils.Decrypt(mData));
-                } catch (Exception e) {
-                    e.printStackTrace();
+                if(check == 0) {
+                    try {
+                        txtKey.setText(EncrytedUtils.Decrypt(mData));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    check = 1;
+                    btnCrypt.setText("ENCRYPT");
+                }else if(check == 1){
+                    try {
+                        txtKey.setText(mData.getEncrytKey());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    check = 0;
+                    btnCrypt.setText("DECRYPT");
                 }
-            }
-        });
-        btnEncrypt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-
-                    txtKey.setText(mData.getEncrytKey());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
             }
         });
     }

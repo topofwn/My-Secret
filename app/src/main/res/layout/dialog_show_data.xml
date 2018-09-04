@@ -69,29 +69,17 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnEncrypt"
+        android:id="@+id/btnCrypt"
         android:layout_below="@+id/btnCopyClipboard"
-        android:layout_centerInParent="true"
-        android:text="Encrypt"
-        android:textSize="15dp"
-        android:padding="5dp"
-        android:layout_marginTop="15dp"
-        android:textColor="@color/white"
-        android:background="@drawable/bg_button_change_state"
-        />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnDecrypt"
-        android:padding="5dp"
-        android:layout_below="@+id/btnEncrypt"
         android:layout_centerInParent="true"
         android:text="Decrypt"
         android:textSize="15dp"
+        android:padding="5dp"
         android:layout_marginTop="15dp"
         android:textColor="@color/white"
         android:background="@drawable/bg_button_change_state"
         />
+
     </RelativeLayout>
 </RelativeLayout>
 </RelativeLayout>

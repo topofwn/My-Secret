@@ -10,6 +10,7 @@ import java.util.List;
 public class SplashPresenter <V extends SplashContract.View> extends BasePresenter<V> implements SplashContract.Presenter<V> {
 
     public SplashPresenter(SchedulerProvider schedulerProvider, DataManager dataManager) {
+        super(schedulerProvider,dataManager);
     }
 
     public SplashPresenter() {
@@ -21,7 +22,7 @@ public class SplashPresenter <V extends SplashContract.View> extends BasePresent
     @Override
     public void setMyDeviceId(String id) {
         dataManager.setDeviceId(id);
-
+        getMvpView().updateProgressBar(50);
     }
 
     @Override

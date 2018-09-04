@@ -30,8 +30,8 @@ import java.util.List;
 
 public class SplashActivity extends BaseActivity implements View.OnClickListener, SplashContract.View {
     private SplashPresenter mPresenter = new SplashPresenter();
-    private FirebaseFirestore db;
     private ProgressBar mProgressBar;
+    private FirebaseFirestore db;
     private FirebaseAuth mAuth;
 
     @Override
@@ -40,8 +40,6 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
         setContentView(R.layout.activity_splash);
         mPresenter = new SplashPresenter(Injections.provideSchedulerProvider(),
                 Injections.provideAppDataManager(SplashActivity.this));
-        db = FirebaseFirestore.getInstance();
-        mAuth = FirebaseAuth.getInstance();
         initView();
         mPresenter.onAttach(this);
         mPresenter.onViewInitialized();
@@ -49,15 +47,6 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
 
     }
 
-@Override
-protected void onStart() {
-    super.onStart();
-    FirebaseUser currentUser = mAuth.getCurrentUser();
-
-    if(currentUser != null){
-        ActivityUtils.startActivity(SplashActivity.this, HomePageActivity.class,false,true);
-    }
-}
 
 
     @Override
@@ -89,7 +78,8 @@ protected void onStart() {
             });
             tr.start();
         });
-        updateProgressBar(50);
+
+        db = FirebaseFirestore.getInstance();
         List<DataPWD> myArray = new ArrayList<>();
         CollectionReference col = db.collection("DataPWd");
         col.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
