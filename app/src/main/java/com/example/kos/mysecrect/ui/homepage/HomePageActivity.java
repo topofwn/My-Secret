@@ -31,7 +31,6 @@ import java.util.List;
 public class HomePageActivity extends BaseActivity implements View.OnClickListener {
     private HomePagePresenter mPresenter = new HomePagePresenter();
     private Button btnGenerate, btnMykey,btnManual;
-    private FirebaseFirestore db;
 
 
     @Override
@@ -40,26 +39,8 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
         setContentView(R.layout.activity_home_page);
         mPresenter = new HomePagePresenter(Injections.provideSchedulerProvider(),
                 Injections.provideAppDataManager(HomePageActivity.this));
-        db = FirebaseFirestore.getInstance();
+
         initView();
-
-        Handler handler = new Handler();
-        handler.post(() -> {
-            Thread tr = new Thread(() -> {
-                AdvertisingIdClient.Info adInfo;
-                String id;
-                try {
-                    adInfo = AdvertisingIdClient.getAdvertisingIdInfo(getApplicationContext());
-                    id = adInfo.getId();
-                    mPresenter.setMyDeviceId(id);
-                } catch (IOException | GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException exception) {
-                    // Encountered a recoverable error connecting to Google Play services.
-                    OGILVYLog.l(exception);
-                }
-            });
-            tr.start();
-        });
-
         mPresenter.onAttach(this);
         mPresenter.onViewInitialized();
         initData();
@@ -83,26 +64,6 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void initData() {
-
-
-        CollectionReference col = db.collection("DataPWd");
-
-        List<DataPWD> myArray = new ArrayList<>();
-        showLoading();
-        col.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for(QueryDocumentSnapshot document : queryDocumentSnapshots){
-                    DataPWD data = document.toObject(DataPWD.class);
-                    myArray.add(data);
-                }
-                mPresenter.setListData(myArray);
-                hideLoading();
-            }
-
-        });
-
-
 
     }
 

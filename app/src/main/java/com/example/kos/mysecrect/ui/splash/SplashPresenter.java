@@ -1,0 +1,37 @@
+package com.example.kos.mysecrect.ui.splash;
+
+import com.example.kos.mysecrect.data.DataManager;
+import com.example.kos.mysecrect.data.model.DataPWD;
+import com.example.kos.mysecrect.ui.base.BasePresenter;
+import com.example.kos.mysecrect.utils.SchedulerProvider;
+
+import java.util.List;
+
+public class SplashPresenter <V extends SplashContract.View> extends BasePresenter<V> implements SplashContract.Presenter<V> {
+
+    public SplashPresenter(SchedulerProvider schedulerProvider, DataManager dataManager) {
+    }
+
+    public SplashPresenter() {
+        super();
+    }
+
+
+
+    @Override
+    public void setMyDeviceId(String id) {
+        dataManager.setDeviceId(id);
+
+    }
+
+    @Override
+    public void setListData(List<DataPWD> data) {
+        dataManager.setListData(data);
+    }
+
+    @Override
+    public String getMyDeviceId() {
+        return dataManager.getDeviceId();
+    }
+}
+
