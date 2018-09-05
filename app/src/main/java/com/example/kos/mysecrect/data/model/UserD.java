@@ -5,18 +5,19 @@ import java.util.List;
 
 public class UserD implements Serializable {
     private String email;
-
     private String id;
     private List<DataPWD> listData;
+    private double latng;
+    private double longt;
 
-    public void UserD(){
-
+    public  UserD(){
     }
-    public void UserD(String id,String email,List<DataPWD> lsdata){
+    public UserD(String id,String email,List<DataPWD> lsdata){
         this.email = email;
         this.id = id;
-
         this.listData = lsdata;
+        this.latng = 0;
+        this.longt = 0;
     }
 
     public void setId(String id) {
@@ -44,5 +45,19 @@ public class UserD implements Serializable {
         this.listData = listData;
     }
 
+    public void setLongt(double longt) {
+        this.longt = longt;
+    }
 
+    public void setLatng(double latng) {
+        this.latng = latng;
+    }
+
+    public double getLatng() {
+        return latng;
+    }
+
+    public double getLongt() {
+        return longt;
+    }
 }

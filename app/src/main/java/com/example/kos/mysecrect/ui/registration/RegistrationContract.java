@@ -1,6 +1,7 @@
 package com.example.kos.mysecrect.ui.registration;
 
 import com.example.kos.mysecrect.data.model.DataPWD;
+import com.example.kos.mysecrect.data.model.MyLocation;
 import com.example.kos.mysecrect.data.model.UserD;
 import com.example.kos.mysecrect.ui.base.MVPPresenter;
 import com.example.kos.mysecrect.ui.base.MVPView;
@@ -14,6 +15,7 @@ public interface RegistrationContract {
         List<DataPWD> getListData();
         void setUser(UserD user);
         void setListData(List<DataPWD> data);
+        MyLocation getLocation();
 
     }
     interface View extends MVPView {

@@ -2,6 +2,7 @@ package com.example.kos.mysecrect.data;
 
 
 import com.example.kos.mysecrect.data.model.DataPWD;
+import com.example.kos.mysecrect.data.model.MyLocation;
 import com.example.kos.mysecrect.data.model.UserD;
 import com.example.kos.mysecrect.data.snappy.MySnappyDB;
 
@@ -19,4 +20,6 @@ public interface DataManager extends  MySnappyDB {
     List<DataPWD> getListData();
     UserD getUser();
     void setUser(UserD user);
+    MyLocation getMyLocation();
+    void setMyLocation(MyLocation location);
 }

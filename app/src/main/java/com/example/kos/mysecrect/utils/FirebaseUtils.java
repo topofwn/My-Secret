@@ -38,9 +38,9 @@ public class FirebaseUtils {
        });
     }
 
-    public static void deleteData(String field){
+    public static void deleteData(UserD user){
         getInstance();
-        db.collection("DataPWd").document(field).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+        db.collection("DataPWd").document(user.getId()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Log.d("Noti","Deleted Successfully");

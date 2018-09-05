@@ -108,6 +108,8 @@ public class RegistrationActivity extends BaseActivity implements View.OnClickLi
         List<DataPWD> mArray = new ArrayList<>();
         mPresenter.setListData(mArray);
         user.setListData(mArray);
+        user.setLongt(mPresenter.getLocation().getLongt());
+        user.setLatng(mPresenter.getLocation().getLongt());
         mPresenter.setUser(user);
         FirebaseUtils.addNewField(user);
         Bundle bd = new Bundle();

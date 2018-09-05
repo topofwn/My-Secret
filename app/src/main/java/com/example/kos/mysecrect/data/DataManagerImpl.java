@@ -4,6 +4,7 @@ import android.content.Context;
 
 
 import com.example.kos.mysecrect.data.model.DataPWD;
+import com.example.kos.mysecrect.data.model.MyLocation;
 import com.example.kos.mysecrect.data.model.UserD;
 import com.example.kos.mysecrect.data.snappy.MySnappyImpl;
 
@@ -60,6 +61,16 @@ public class DataManagerImpl implements DataManager {
     @Override
     public void setUser(UserD user) {
         mySnappy.setUser(user);
+    }
+
+    @Override
+    public MyLocation getMyLocation() {
+        return mySnappy.getMyLocation();
+    }
+
+    @Override
+    public void setMyLocation(MyLocation location) {
+        mySnappy.setMyLocation(location);
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.example.kos.mysecrect.ui.homepage;
 
 import com.example.kos.mysecrect.data.DataManager;
 import com.example.kos.mysecrect.data.model.DataPWD;
+import com.example.kos.mysecrect.data.model.MyLocation;
 import com.example.kos.mysecrect.data.model.UserD;
 import com.example.kos.mysecrect.ui.base.BasePresenter;
 import com.example.kos.mysecrect.utils.SchedulerProvider;
@@ -32,6 +33,16 @@ public class HomePagePresenter <V extends HomePageContract.View> extends BasePre
     @Override
     public void setListData(List<DataPWD> data) {
         dataManager.setListData(data);
+    }
+
+    @Override
+    public MyLocation getMyLocation() {
+        return dataManager.getMyLocation();
+    }
+
+    @Override
+    public void setUser(UserD user) {
+        dataManager.setUser(user);
     }
 
 }

@@ -10,5 +10,6 @@ public class SnapKey {
     static final String MY_SNAPPY_KEY_DEVICE_ID = "MY_SNAPPY_KEY_DEVICE_ID";
     static final String MY_SNAPPY_KEY_LIST_DATA = "MY_SNAPPY_KEY_LIST_DATA";
     static final String MY_SNAPPY_KEY_USER = "MY_SNAPPY_KEY_USER";
+    static final String MY_SNAPPY_KEY_LOCATION = "MY_SNAPPY_KEY_LOCATION";
 
 }

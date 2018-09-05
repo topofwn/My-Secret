@@ -1,6 +1,7 @@
 package com.example.kos.mysecrect.ui.homepage;
 
 import com.example.kos.mysecrect.data.model.DataPWD;
+import com.example.kos.mysecrect.data.model.MyLocation;
 import com.example.kos.mysecrect.data.model.UserD;
 import com.example.kos.mysecrect.ui.base.MVPPresenter;
 import com.example.kos.mysecrect.ui.base.MVPView;
@@ -11,7 +12,8 @@ public interface HomePageContract {
     interface Presenter<V extends View> extends MVPPresenter<V> {
     UserD getUser();
     void setListData(List<DataPWD> data);
-
+    MyLocation getMyLocation();
+    void setUser(UserD user);
 
     }
     interface View extends MVPView {

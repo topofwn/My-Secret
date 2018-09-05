@@ -79,16 +79,20 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
         }
         db = FirebaseFirestore.getInstance();
         List<DataPWD> myArray = new ArrayList<>();
+
         showLoading();
         DocumentReference col = db.collection("DataPWd").document(user.getId());
         col.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                UserD user = documentSnapshot.toObject(UserD.class);
+                UserD user1 = documentSnapshot.toObject(UserD.class);
                 List<DataPWD> mArray = new ArrayList<>();
-                if(user.getListData() != null){
-                   mArray = user.getListData();
+                if(user1.getListData() != null){
+                   mArray = user1.getListData();
                 }
+                user1.setLatng(mPresenter.getMyLocation().getLatng());
+                user1.setLongt(mPresenter.getMyLocation().getLongt());
+                mPresenter.setUser(user1);
                 mPresenter.setListData(mArray);
                 hideLoading();
             }
