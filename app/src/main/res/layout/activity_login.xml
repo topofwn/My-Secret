@@ -33,6 +33,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/edtEmail"
+        android:inputType="textEmailAddress"
         android:layout_marginLeft="10dp"
         app:layout_constraintLeft_toRightOf="@+id/txtEmail"
         app:layout_constraintRight_toRightOf="parent"

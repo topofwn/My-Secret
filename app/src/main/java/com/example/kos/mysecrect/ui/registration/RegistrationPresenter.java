@@ -37,4 +37,9 @@ public class RegistrationPresenter<V extends RegistrationContract.View> extends 
     public void setUser(UserD user) {
         dataManager.setUser(user);
     }
+
+    @Override
+    public void setListData(List<DataPWD> data) {
+        dataManager.setListData(data);
+    }
 }

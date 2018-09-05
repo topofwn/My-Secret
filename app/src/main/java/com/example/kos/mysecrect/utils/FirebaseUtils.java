@@ -20,9 +20,9 @@ public class FirebaseUtils {
     }
 
 
-    public static void addNewField(UserD data, String deviceid){
+    public static void addNewField(UserD data){
         getInstance();
-        DocumentReference col = db.collection("DataPWd").document(deviceid);
+        DocumentReference col = db.collection("DataPWd").document(data.getId());
         col.set(data);
 
     }

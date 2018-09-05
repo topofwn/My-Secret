@@ -13,7 +13,7 @@ public interface RegistrationContract {
     interface Presenter<V extends View> extends MVPPresenter<V> {
         List<DataPWD> getListData();
         void setUser(UserD user);
-
+        void setListData(List<DataPWD> data);
 
     }
     interface View extends MVPView {

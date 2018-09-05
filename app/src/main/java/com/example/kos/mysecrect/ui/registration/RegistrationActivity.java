@@ -9,16 +9,21 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.kos.mysecrect.R;
+import com.example.kos.mysecrect.data.model.DataPWD;
 import com.example.kos.mysecrect.data.model.UserD;
 import com.example.kos.mysecrect.ui.base.BaseActivity;
 import com.example.kos.mysecrect.ui.homepage.HomePageActivity;
 import com.example.kos.mysecrect.ui.login.LoginActivity;
 import com.example.kos.mysecrect.utils.ActivityUtils;
+import com.example.kos.mysecrect.utils.FirebaseUtils;
 import com.example.kos.mysecrect.utils.Injections;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RegistrationActivity extends BaseActivity implements View.OnClickListener, RegistrationContract.View {
     private RegistrationPresenter mPresenter = new RegistrationPresenter();
@@ -33,7 +38,7 @@ public class RegistrationActivity extends BaseActivity implements View.OnClickLi
         setContentView(R.layout.activity_registration);
         mPresenter = new RegistrationPresenter(Injections.provideSchedulerProvider(),
                 Injections.provideAppDataManager(RegistrationActivity.this));
-    turnOnTouchHideKeyBoard();
+        turnOnTouchHideKeyBoard();
         initView();
         mPresenter.onAttach(this);
         mPresenter.onViewInitialized();
@@ -100,8 +105,11 @@ public class RegistrationActivity extends BaseActivity implements View.OnClickLi
         UserD user = new UserD();
         user.setEmail(mAuth.getCurrentUser().getEmail());
         user.setId(mAuth.getCurrentUser().getUid());
-        user.setListData(mPresenter.getListData());
+        List<DataPWD> mArray = new ArrayList<>();
+        mPresenter.setListData(mArray);
+        user.setListData(mArray);
         mPresenter.setUser(user);
+        FirebaseUtils.addNewField(user);
         Bundle bd = new Bundle();
         bd.putSerializable(USER_KEY_DATA,user);
         ActivityUtils.startActivityWithData(RegistrationActivity.this,HomePageActivity.class,true,bd);

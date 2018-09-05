@@ -34,6 +34,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/edtEmail"
             android:layout_marginLeft="10dp"
+            android:inputType="textEmailAddress"
             app:layout_constraintLeft_toRightOf="@+id/txtEmail"
             app:layout_constraintRight_toRightOf="parent"
             android:background="@color/white"

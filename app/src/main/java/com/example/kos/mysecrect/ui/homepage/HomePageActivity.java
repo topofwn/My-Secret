@@ -11,6 +11,7 @@ import com.example.kos.mysecrect.data.model.DataPWD;
 import com.example.kos.mysecrect.data.model.UserD;
 import com.example.kos.mysecrect.ui.base.BaseActivity;
 import com.example.kos.mysecrect.ui.generatekey.GenerateKeyActivity;
+import com.example.kos.mysecrect.ui.login.LoginActivity;
 import com.example.kos.mysecrect.ui.manualgenerate.ManualGenerateActivity;
 import com.example.kos.mysecrect.ui.pwdstore.PWDStoreActivity;
 import com.example.kos.mysecrect.utils.ActivityUtils;
@@ -20,6 +21,7 @@ import com.google.android.gms.ads.identifier.AdvertisingIdClient;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -33,7 +35,7 @@ import java.util.List;
 
 public class HomePageActivity extends BaseActivity implements View.OnClickListener {
     private HomePagePresenter mPresenter = new HomePagePresenter();
-    private Button btnGenerate, btnMykey,btnManual;
+    private Button btnGenerate, btnMykey,btnManual,btnSignOut;
     private FirebaseFirestore db;
     private static final String USER_KEY_DATA = "USER_KEY_DATA" ;
     private UserD user;
@@ -65,6 +67,8 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
         btnMykey.setOnClickListener(this);
         btnManual = findViewById(R.id.btn3);
         btnManual.setOnClickListener(this);
+        btnSignOut = findViewById(R.id.btn4);
+        btnSignOut.setOnClickListener(this);
     }
 
     @Override
@@ -86,6 +90,7 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
                    mArray = user.getListData();
                 }
                 mPresenter.setListData(mArray);
+                hideLoading();
             }
         });
     }
@@ -101,6 +106,11 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
         else if(v.getId() == R.id.btn3){
             ActivityUtils.startActivity(HomePageActivity.this, ManualGenerateActivity.class,false,true);
         }
+        else if(v.getId() == R.id.btn4){
+            FirebaseAuth.getInstance().signOut();
+            ActivityUtils.startActivity(HomePageActivity.this, LoginActivity.class,true,true);
+        }
+
     }
 
 

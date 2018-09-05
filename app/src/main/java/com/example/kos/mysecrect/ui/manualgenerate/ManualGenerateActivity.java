@@ -108,7 +108,7 @@ public class ManualGenerateActivity extends BaseActivity implements View.OnClick
                     UserD user = mPresenter.getUser();
                     user.setListData(tempList);
                     mPresenter.setUser(user);
-                        FirebaseUtils.addNewField(user,mPresenter.getUser().getId());
+                        FirebaseUtils.addNewField(user);
                         UIUtils.showToast(getApplicationContext(),"Saved successfully");
 
 

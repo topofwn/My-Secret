@@ -120,7 +120,7 @@ public class GenerateKeyActivity extends BaseActivity implements View.OnClickLis
                 UserD user = mPresenter.getUser();
                 user.setListData(tempList);
                 mPresenter.setUser(user);
-                FirebaseUtils.addNewField(user,mPresenter.getMyDeviceId());
+                FirebaseUtils.addNewField(user);
                     UIUtils.showToast(getApplicationContext(),"Saved successfully");
 
             }else {
