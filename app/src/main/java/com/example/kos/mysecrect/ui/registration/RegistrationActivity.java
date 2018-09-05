@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -54,7 +55,7 @@ public class RegistrationActivity extends BaseActivity implements View.OnClickLi
     public void onClick(View v) {
         if(v.getId() == R.id.btnSignUp){
             hideKeyboard();
-            //TODO: send verify email and create user
+            //TODO: send verify email and check if email verified
             String email = edtEmail.getText().toString();
             String pwd = edtPass.getText().toString();
             String re_pwd = edtRePass.getText().toString();
@@ -78,6 +79,20 @@ public class RegistrationActivity extends BaseActivity implements View.OnClickLi
                 }
             }
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+
+            default:
+                break;
+
+
+        }
+        return true;
     }
 
     @Override

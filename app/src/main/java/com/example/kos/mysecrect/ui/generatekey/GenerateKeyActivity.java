@@ -82,12 +82,7 @@ public class GenerateKeyActivity extends BaseActivity implements View.OnClickLis
         edtName = findViewById(R.id.edtAppName);
 
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.base_done_menu, menu);
-        return true;
-    }
+
 
     @Override
     public void onBackPressed() {

@@ -48,7 +48,7 @@
     >
 
 </activity>
-        <service android:name=".data.service.MyService" android:process=":my_service"/>
+
     </application>
 
 </manifest>

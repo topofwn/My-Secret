@@ -39,12 +39,7 @@ public class PWDStoreActivity extends BaseActivity implements View.OnClickListen
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.base_done_menu, menu);
-        return true;
-    }
+
 
 
     @Override
@@ -98,6 +93,7 @@ public class PWDStoreActivity extends BaseActivity implements View.OnClickListen
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 return false;
+                //TODO create popup menu to choose edit or delete item
             }
         });
     }

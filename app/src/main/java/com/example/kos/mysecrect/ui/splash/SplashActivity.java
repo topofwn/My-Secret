@@ -23,6 +23,7 @@ import com.example.kos.mysecrect.utils.AlertType;
 import com.example.kos.mysecrect.utils.Injections;
 import com.example.kos.mysecrect.utils.MessageType;
 import com.example.kos.mysecrect.utils.OGILVYLog;
+import com.example.kos.mysecrect.utils.UIUtils;
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -55,6 +56,7 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
         setContentView(R.layout.activity_splash);
         mPresenter = new SplashPresenter(Injections.provideSchedulerProvider(),
                 Injections.provideAppDataManager(SplashActivity.this));
+
         initView();
         mPresenter.onAttach(this);
         mPresenter.onViewInitialized();
@@ -82,6 +84,7 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     protected void initData() {
+        //TODO: check network connection, build notify dialog
 
         Handler handler = new Handler();
         handler.post(() -> {
@@ -99,6 +102,9 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
             });
             tr.start();
         });
+
+
+
         updateProgressBar(90);
         gotoLogin();
 
@@ -132,7 +138,7 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
             Location location = locationManager
                     .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
             if (location != null) {
-                //TODO:save location
+
                 mPresenter.setLocation(location.getLatitude(),location.getLongitude());
             } else {
 
@@ -148,7 +154,6 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
             if (location != null) {
                 mPresenter.setLocation(location.getLatitude(),location.getLongitude());
             } else {
-                // TODO: 7/26/18 locallize string xml
                 showMessage("No location found", MessageType.ERROR, AlertType.TOAST);
             }
         }
