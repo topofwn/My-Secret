@@ -88,7 +88,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         btnSignUp = findViewById(R.id.btnSignUp);
         btnSignUp.setOnClickListener(this);
         btnSignIn.setOnClickListener(this);
-        //TODO: create 1 button to delete account
+
     }
 
     @Override

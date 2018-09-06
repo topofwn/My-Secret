@@ -53,6 +53,8 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
         initData();
     }
 
+
+
     @Override
     protected void initView() {
         Toolbar mToolbar = findViewById(R.id.toolbar);
@@ -69,6 +71,7 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
         btnManual.setOnClickListener(this);
         btnSignOut = findViewById(R.id.btn4);
         btnSignOut.setOnClickListener(this);
+        //TODO: create 1 button to delete account
     }
 
     @Override
