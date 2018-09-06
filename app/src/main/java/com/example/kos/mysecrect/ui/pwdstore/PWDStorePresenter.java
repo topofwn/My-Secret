@@ -14,13 +14,6 @@ import java.util.List;
 import javax.crypto.Cipher;
 
 public class PWDStorePresenter <V extends PWDStoreContract.View> extends BasePresenter<V> implements PWDStoreContract.Presenter<V> {
-    private KeyPairGenerator kpg;
-    private KeyPair kp;
-    private PublicKey publicKey;
-    private PrivateKey privateKey;
-    private byte[] encryptedBytes, decryptedBytes;
-    private Cipher cipher, cipher1;
-    private String encrypted, decrypted;
 
 
 

@@ -2,10 +2,8 @@ package com.example.kos.mysecrect.ui.registration;
 
 import com.example.kos.mysecrect.data.DataManager;
 import com.example.kos.mysecrect.data.model.DataPWD;
-import com.example.kos.mysecrect.data.model.MyLocation;
 import com.example.kos.mysecrect.data.model.UserD;
 import com.example.kos.mysecrect.ui.base.BasePresenter;
-import com.example.kos.mysecrect.ui.login.LoginContract;
 import com.example.kos.mysecrect.utils.SchedulerProvider;
 
 import java.util.List;
@@ -44,8 +42,5 @@ public class RegistrationPresenter<V extends RegistrationContract.View> extends 
         dataManager.setListData(data);
     }
 
-    @Override
-    public MyLocation getLocation() {
-        return dataManager.getMyLocation();
-    }
+
 }

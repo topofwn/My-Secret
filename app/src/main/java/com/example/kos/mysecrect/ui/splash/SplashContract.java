@@ -12,7 +12,7 @@ public interface SplashContract {
         void setMyDeviceId(String id);
         void setListData(List<DataPWD> data);
         List<DataPWD> getListData();
-        void setLocation(double la,double lo);
+
 
     }
     interface View extends MVPView {

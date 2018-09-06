@@ -1,6 +1,7 @@
 package com.example.kos.mysecrect.data.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserD implements Serializable {
@@ -11,6 +12,11 @@ public class UserD implements Serializable {
     private double longt;
 
     public  UserD(){
+        this.email = "";
+        this.id = "";
+        this.listData = new ArrayList<>();
+        this.latng = 0;
+        this.longt = 0;
     }
     public UserD(String id,String email,List<DataPWD> lsdata){
         this.email = email;

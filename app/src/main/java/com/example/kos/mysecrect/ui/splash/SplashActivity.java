@@ -40,15 +40,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SplashActivity extends BaseActivity implements View.OnClickListener, SplashContract.View,android.location.LocationListener {
+public class SplashActivity extends BaseActivity implements View.OnClickListener, SplashContract.View {
 
     private SplashPresenter mPresenter = new SplashPresenter();
     private ProgressBar mProgressBar;
     private FirebaseFirestore db;
-    private static final int REQUEST_ACCESS_LOCATION_CODE = 2;
-    private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
-
-    private static final long MIN_TIME_BW_UPDATES = 1000 * 60; // 1 minute
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,13 +57,7 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
         mPresenter.onAttach(this);
         mPresenter.onViewInitialized();
         initData();
-        if (hasPermission(android.Manifest.permission.ACCESS_FINE_LOCATION)
-                && hasPermission(android.Manifest.permission.ACCESS_COARSE_LOCATION)) {
-            getLastUnknownLocation();
-        } else {
-            requestPermissionsSafely(new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION,
-                    android.Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_ACCESS_LOCATION_CODE);
-        }
+
     }
 
 
@@ -110,54 +100,9 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
 
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_ACCESS_LOCATION_CODE) {
-            for (int i = 0, len = permissions.length; i < len; i++) {
-                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
-                    // user rejected the permission
-                    getLastUnknownLocation();
-                }
-            }
-        }
-    }
 
-    @SuppressLint("MissingPermission")
-    private void getLastUnknownLocation() {
-        LocationManager locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
-        boolean isNetworkEnabled = locationManager
-                .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-        boolean isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        if (isNetworkEnabled) {
-            locationManager.requestLocationUpdates(
-                    LocationManager.GPS_PROVIDER,
-                    MIN_TIME_BW_UPDATES,
-                    MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
-            Location location = locationManager
-                    .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-            if (location != null) {
 
-                mPresenter.setLocation(location.getLatitude(),location.getLongitude());
-            } else {
 
-                showMessage("No location found", MessageType.ERROR, AlertType.TOAST);
-            }
-        } else if (isGPSEnabled) {
-            locationManager.requestLocationUpdates(
-                    LocationManager.GPS_PROVIDER,
-                    MIN_TIME_BW_UPDATES,
-                    MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
-            Location location = locationManager
-                    .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-            if (location != null) {
-                mPresenter.setLocation(location.getLatitude(),location.getLongitude());
-            } else {
-                showMessage("No location found", MessageType.ERROR, AlertType.TOAST);
-            }
-        }
-    }
 
     @Override
     public void updateProgressBar(int count) {
@@ -172,23 +117,4 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
         ActivityUtils.startActivity(SplashActivity.this, LoginActivity.class,true);
     }
 
-    @Override
-    public void onLocationChanged(Location location) {
-
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
-    }
 }

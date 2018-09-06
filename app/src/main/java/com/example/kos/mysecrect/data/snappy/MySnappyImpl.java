@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.example.kos.mysecrect.data.model.DataPWD;
-import com.example.kos.mysecrect.data.model.MyLocation;
 import com.example.kos.mysecrect.data.model.UserD;
 import com.example.kos.mysecrect.utils.OGILVYLog;
 import com.snappydb.DB;
@@ -164,15 +163,6 @@ public class MySnappyImpl implements MySnappyDB {
         return getObject(MY_SNAPPY_KEY_USER,UserD.class);
     }
 
-    @Override
-    public MyLocation getMyLocation() {
-        return getObject(MY_SNAPPY_KEY_LOCATION,MyLocation.class);
-    }
-
-    @Override
-    public void setMyLocation(MyLocation location) {
-        saveObject(location,MY_SNAPPY_KEY_LOCATION);
-    }
 }
 
 

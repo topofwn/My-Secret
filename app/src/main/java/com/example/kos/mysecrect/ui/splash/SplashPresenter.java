@@ -2,8 +2,6 @@ package com.example.kos.mysecrect.ui.splash;
 
 import com.example.kos.mysecrect.data.DataManager;
 import com.example.kos.mysecrect.data.model.DataPWD;
-import com.example.kos.mysecrect.data.model.MyLocation;
-import com.example.kos.mysecrect.data.model.UserD;
 import com.example.kos.mysecrect.ui.base.BasePresenter;
 import com.example.kos.mysecrect.utils.SchedulerProvider;
 
@@ -37,12 +35,6 @@ public class SplashPresenter <V extends SplashContract.View> extends BasePresent
         return dataManager.getListData();
     }
 
-    @Override
-    public void setLocation(double la, double lo) {
-        MyLocation location = new MyLocation(la,lo);
-        dataManager.setMyLocation(location);
-        getMvpView().updateProgressBar(60);
-    }
 
 
 }

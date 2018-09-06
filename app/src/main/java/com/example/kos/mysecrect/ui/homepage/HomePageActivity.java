@@ -93,8 +93,7 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
                 if(user1.getListData() != null){
                    mArray = user1.getListData();
                 }
-                user1.setLatng(mPresenter.getMyLocation().getLatng());
-                user1.setLongt(mPresenter.getMyLocation().getLongt());
+
                 mPresenter.setUser(user1);
                 mPresenter.setListData(mArray);
                 hideLoading();
