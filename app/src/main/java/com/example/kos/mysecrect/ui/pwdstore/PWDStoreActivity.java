@@ -103,4 +103,8 @@ public class PWDStoreActivity extends BaseActivity implements View.OnClickListen
     }
 
 
+    @Override
+    public void DismissDialog() {
+
+    }
 }

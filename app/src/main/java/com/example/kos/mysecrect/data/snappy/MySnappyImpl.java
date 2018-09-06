@@ -17,7 +17,7 @@ import java.util.List;
 
 import static com.example.kos.mysecrect.data.snappy.SnapKey.MY_SNAPPY_KEY_DEVICE_ID;
 import static com.example.kos.mysecrect.data.snappy.SnapKey.MY_SNAPPY_KEY_LIST_DATA;
-import static com.example.kos.mysecrect.data.snappy.SnapKey.MY_SNAPPY_KEY_LOCATION;
+
 import static com.example.kos.mysecrect.data.snappy.SnapKey.MY_SNAPPY_KEY_USER;
 
 

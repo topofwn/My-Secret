@@ -31,7 +31,7 @@ public class RegistrationActivity extends BaseActivity implements View.OnClickLi
     private EditText edtEmail,edtPass,edtRePass;
     private Button btnRegis;
     private FirebaseAuth mAuth;
-    private static final String USER_KEY_DATA = "USER_KEY_DATA" ;
+    private static final String SEND_FROM_REGISTRATION = "SEND_FROM_REGISTRATION" ;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,8 +54,9 @@ public class RegistrationActivity extends BaseActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.btnSignUp){
+            showLoading();
             hideKeyboard();
-            //TODO: send verify email and check if email verified
+
             String email = edtEmail.getText().toString();
             String pwd = edtPass.getText().toString();
             String re_pwd = edtRePass.getText().toString();
@@ -69,8 +70,10 @@ public class RegistrationActivity extends BaseActivity implements View.OnClickLi
                     mAuth.createUserWithEmailAndPassword(email,pwd).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+                            hideLoading();
                             if (task.isSuccessful()) {
-                                gotoHomepage();
+                               gotoHomepage();
+                              //  gotoLogin();
                             } else {
                                 onError("Create user failed");
                             }
@@ -101,7 +104,7 @@ public class RegistrationActivity extends BaseActivity implements View.OnClickLi
         setSupportActionBar(mToolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
         edtEmail = findViewById(R.id.edtEmail);
         edtPass =findViewById(R.id.edtPassword);
@@ -125,8 +128,19 @@ public class RegistrationActivity extends BaseActivity implements View.OnClickLi
         user.setListData(mArray);
         mPresenter.setUser(user);
         FirebaseUtils.addNewField(user);
+        mAuth.getCurrentUser().sendEmailVerification();
         Bundle bd = new Bundle();
-        bd.putSerializable(USER_KEY_DATA,user);
-        ActivityUtils.startActivityWithData(RegistrationActivity.this,HomePageActivity.class,true,bd);
+        bd.putCharSequence(SEND_FROM_REGISTRATION,"registration");
+        ActivityUtils.startActivityWithData(RegistrationActivity.this,LoginActivity.class,true,bd);
+//        Bundle bd = new Bundle();
+//        bd.putSerializable(USER_KEY_DATA,user);
+//        ActivityUtils.startActivityWithData(RegistrationActivity.this,HomePageActivity.class,true,bd);
+    }
+    public void gotoLogin(){
+
+    }
+    @Override
+    public void DismissDialog() {
+
     }
 }

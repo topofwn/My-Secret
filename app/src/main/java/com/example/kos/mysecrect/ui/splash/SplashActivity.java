@@ -29,6 +29,7 @@ import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.common.base.CharMatcher;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -75,29 +76,30 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
     @Override
     protected void initData() {
         //TODO: check network connection, build notify dialog
-
-        Handler handler = new Handler();
-        handler.post(() -> {
-            Thread tr = new Thread(() -> {
-                AdvertisingIdClient.Info adInfo;
-                String id;
-                try {
-                    adInfo = AdvertisingIdClient.getAdvertisingIdInfo(getApplicationContext());
-                    id = adInfo.getId();
-                    mPresenter.setMyDeviceId(id);
-                } catch (IOException | GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException exception) {
-                    // Encountered a recoverable error connecting to Google Play services.
-                    OGILVYLog.l(exception);
-                }
+        if(!isNetworkConnected()){
+            onNoInternetConnection();
+        }else {
+            Handler handler = new Handler();
+            handler.post(() -> {
+                Thread tr = new Thread(() -> {
+                    AdvertisingIdClient.Info adInfo;
+                    String id;
+                    try {
+                        adInfo = AdvertisingIdClient.getAdvertisingIdInfo(getApplicationContext());
+                        id = adInfo.getId();
+                        mPresenter.setMyDeviceId(id);
+                    } catch (IOException | GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException exception) {
+                        // Encountered a recoverable error connecting to Google Play services.
+                        OGILVYLog.l(exception);
+                    }
+                });
+                tr.start();
             });
-            tr.start();
-        });
 
 
-
-        updateProgressBar(90);
-        gotoLogin();
-
+            updateProgressBar(90);
+            gotoLogin();
+        }
     }
 
 
@@ -117,4 +119,8 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
         ActivityUtils.startActivity(SplashActivity.this, LoginActivity.class,true);
     }
 
+    @Override
+    public void DismissDialog() {
+
+    }
 }

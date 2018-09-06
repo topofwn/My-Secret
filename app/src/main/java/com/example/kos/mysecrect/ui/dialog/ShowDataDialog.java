@@ -1,5 +1,6 @@
 package com.example.kos.mysecrect.ui.dialog;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -15,6 +16,8 @@ import com.example.kos.mysecrect.R;
 import com.example.kos.mysecrect.data.model.DataPWD;
 import com.example.kos.mysecrect.utils.EncrytedUtils;
 import com.example.kos.mysecrect.utils.UIUtils;
+
+import static com.example.kos.mysecrect.R.color.transparent_black_forty;
 
 public class ShowDataDialog extends Dialog{
     private Context mContext;
@@ -53,9 +56,11 @@ public class ShowDataDialog extends Dialog{
             }
         });
         ImageButton btnClose = findViewById(R.id.btnClose);
+
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 dismiss();
             }
         });

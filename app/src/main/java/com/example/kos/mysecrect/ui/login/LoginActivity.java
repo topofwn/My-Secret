@@ -15,12 +15,14 @@ import com.example.kos.mysecrect.ui.homepage.HomePageActivity;
 import com.example.kos.mysecrect.ui.registration.RegistrationActivity;
 import com.example.kos.mysecrect.utils.ActivityUtils;
 import com.example.kos.mysecrect.utils.Injections;
+import com.example.kos.mysecrect.utils.UIUtils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener,LoginContract.View{
+    private static final String SEND_FROM_REGISTRATION = "SEND_FROM_REGISTRATION" ;
     private LoginPresenter mPresenter = new LoginPresenter();
     private EditText edtEmail, edtPass;
     private Button btnSignIn,btnSignUp;
@@ -37,6 +39,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         initView();
         mPresenter.onAttach(this);
         mPresenter.onViewInitialized();
+        mAuth = FirebaseAuth.getInstance();
+        Bundle data =getIntent().getExtras();
+
+        if (mAuth.getCurrentUser() != null){
+           if(mAuth.getCurrentUser().isEmailVerified()) {
+               gotoHomePage();
+           }
+        }
         initData();
     }
 
@@ -64,7 +74,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        gotoHomePage();
+                        if(!mAuth.getCurrentUser().isEmailVerified()){
+                            UIUtils.showToast(LoginActivity.this,"Please verify account");
+                        }else {
+                            gotoHomePage();
+                        }
                     } else {
                         onError("Authentication Failed");
 
@@ -105,12 +119,19 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     public void gotoHomePage() {
         UserD user = new UserD();
         mAuth = FirebaseAuth.getInstance();
-        user.setEmail(mAuth.getCurrentUser().getEmail());
-        user.setId(mAuth.getCurrentUser().getUid());
-        user.setListData(mPresenter.getListData());
-        mPresenter.setUser(user);
-        Bundle bd = new Bundle();
-        bd.putSerializable(USER_KEY_DATA,user);
-        ActivityUtils.startActivityWithData(LoginActivity.this,HomePageActivity.class,true,bd);
+
+            user.setEmail(mAuth.getCurrentUser().getEmail());
+            user.setId(mAuth.getCurrentUser().getUid());
+            user.setListData(mPresenter.getListData());
+            mPresenter.setUser(user);
+            Bundle bd = new Bundle();
+            bd.putSerializable(USER_KEY_DATA, user);
+            ActivityUtils.startActivityWithData(LoginActivity.this, HomePageActivity.class, true, bd);
+
+    }
+
+    @Override
+    public void DismissDialog() {
+
     }
 }

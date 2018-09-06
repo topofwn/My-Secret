@@ -40,8 +40,8 @@ public class MyService extends Service
             Log.e(TAG, "onLocationChanged: " + location);
             mLastLocation.set(location);
             if (mAuth.getCurrentUser() != null) {
-                MyLocation loc = new MyLocation(location.getLatitude(),location.getLongitude());
-                db.collection("Location").document(mAuth.getCurrentUser().getUid()).set(loc);
+
+
             }
         }
 

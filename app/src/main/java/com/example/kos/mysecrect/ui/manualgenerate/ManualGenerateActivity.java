@@ -116,4 +116,8 @@ public class ManualGenerateActivity extends BaseActivity implements View.OnClick
 
     }
 
+    @Override
+    public void DismissDialog() {
+
+    }
 }

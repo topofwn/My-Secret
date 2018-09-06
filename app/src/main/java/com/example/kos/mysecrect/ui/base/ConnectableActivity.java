@@ -13,4 +13,9 @@ public class ConnectableActivity extends BaseActivity {
     protected void initData() {
 
     }
+
+    @Override
+    public void DismissDialog() {
+
+    }
 }

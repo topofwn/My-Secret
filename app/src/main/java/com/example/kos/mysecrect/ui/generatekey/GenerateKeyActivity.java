@@ -150,4 +150,9 @@ public class GenerateKeyActivity extends BaseActivity implements View.OnClickLis
 
      return sb.toString() ;
     }
+
+    @Override
+    public void DismissDialog() {
+
+    }
 }

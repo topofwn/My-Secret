@@ -16,6 +16,7 @@ import android.widget.EditText;
 
 
 import com.example.kos.mysecrect.R;
+import com.example.kos.mysecrect.ui.dialog.ConnectionDialog;
 import com.example.kos.mysecrect.utils.AlertType;
 import com.example.kos.mysecrect.utils.MessageType;
 import com.example.kos.mysecrect.utils.StringUtils;
@@ -25,12 +26,13 @@ import com.example.kos.mysecrect.utils.UIUtils;
 
 
 public abstract class BaseActivity extends AppCompatActivity
-        implements MVPView, BaseFragment.Callback {
+        implements MVPView, BaseFragment.Callback, ConnectionDialog.ConnectionDialogListener {
 
     private ProgressDialog mProgressDialog;
     private boolean isLife = false;
     // this boolean is use for trigger function auto hide keyboard when tap out of focus edit text
     private boolean mTurnOnTouchHideKeyBoard = false;
+    private ConnectionDialog notifyConnectionDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -240,5 +242,12 @@ public abstract class BaseActivity extends AppCompatActivity
 
     @Override
     public void onNoInternetConnection() {
+        if (notifyConnectionDialog == null) {
+            notifyConnectionDialog = new ConnectionDialog(BaseActivity.this);
+            notifyConnectionDialog.setDialogListener(this);
+        }
+        if (!notifyConnectionDialog.isShowing()) {
+            notifyConnectionDialog.show();
+        }
     }
 }

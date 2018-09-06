@@ -2,6 +2,7 @@ package com.example.kos.mysecrect.ui.homepage;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
@@ -15,13 +16,17 @@ import com.example.kos.mysecrect.ui.login.LoginActivity;
 import com.example.kos.mysecrect.ui.manualgenerate.ManualGenerateActivity;
 import com.example.kos.mysecrect.ui.pwdstore.PWDStoreActivity;
 import com.example.kos.mysecrect.utils.ActivityUtils;
+import com.example.kos.mysecrect.utils.FirebaseUtils;
 import com.example.kos.mysecrect.utils.Injections;
 import com.example.kos.mysecrect.utils.OGILVYLog;
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -35,7 +40,7 @@ import java.util.List;
 
 public class HomePageActivity extends BaseActivity implements View.OnClickListener {
     private HomePagePresenter mPresenter = new HomePagePresenter();
-    private Button btnGenerate, btnMykey,btnManual,btnSignOut;
+    private Button btnGenerate, btnMykey,btnManual,btnSignOut,btnDelete;
     private FirebaseFirestore db;
     private static final String USER_KEY_DATA = "USER_KEY_DATA" ;
     private UserD user;
@@ -71,7 +76,8 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
         btnManual.setOnClickListener(this);
         btnSignOut = findViewById(R.id.btn4);
         btnSignOut.setOnClickListener(this);
-        //TODO: create 1 button to delete account
+        btnDelete = findViewById(R.id.btn5);
+        btnDelete.setOnClickListener(this);
     }
 
     @Override
@@ -115,10 +121,25 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
         else if(v.getId() == R.id.btn4){
             FirebaseAuth.getInstance().signOut();
             ActivityUtils.startActivity(HomePageActivity.this, LoginActivity.class,true,true);
+        }else if(v.getId() == R.id.btn5){
+            FirebaseUser user =  FirebaseAuth.getInstance().getCurrentUser();
+//TODO: delete user failed, unkonwn reason
+             user.delete()
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                               ActivityUtils.startActivity(HomePageActivity.this,LoginActivity.class,true,true);
+                            }
+                        }
+                    });
         }
 
     }
 
 
+    @Override
+    public void DismissDialog() {
 
+    }
 }

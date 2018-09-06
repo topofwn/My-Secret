@@ -24,10 +24,7 @@ public class LoginPresenter<V extends LoginContract.View> extends BasePresenter<
     @Override
     public void onViewInitialized() {
         super.onViewInitialized();
-        mAuth = FirebaseAuth.getInstance();
-        if (mAuth.getCurrentUser() != null){
-            getMvpView().gotoHomePage();
-        }
+
     }
 
 

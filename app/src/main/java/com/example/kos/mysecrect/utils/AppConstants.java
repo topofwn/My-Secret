@@ -14,7 +14,7 @@ public class AppConstants {
     public static final String API_WEATHER = "189c14032c6fafef2aadda401ebe7223";
     public static final String WEATHER_URL ="http://api.openweathermap.org/data/2.5/weather?lat={latng}&lon={longt}&appid="+API_WEATHER;
     public static final String ICON_URL = "http://openweathermap.org/img/w/";
-
+    public static final String NO_CONNECTION = "No network available. Please try again...";
     public static final String PATH_PARAM_LATNG = "latng";
     public static final String PATH_PARAM_LONGT = "longt";
     public static final String PICK_COLOR = "pick_color";
