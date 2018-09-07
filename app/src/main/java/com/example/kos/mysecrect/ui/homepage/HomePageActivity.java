@@ -62,9 +62,10 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void initView() {
+        //TODO: create navigation view
         Toolbar mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-        if (getSupportActionBar() != null) {
+        if (getSupportActionBar() != null)  {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         }

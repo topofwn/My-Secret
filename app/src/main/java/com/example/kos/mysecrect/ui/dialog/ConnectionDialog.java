@@ -22,6 +22,7 @@ public class ConnectionDialog extends Dialog implements View.OnClickListener{
     public ConnectionDialog(@NonNull Context context) {
         super(context);
         mContext = context;
+
         if (getWindow() != null) {
             getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
