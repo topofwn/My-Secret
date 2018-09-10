@@ -5,4 +5,15 @@
     <string name="press_to_generate">Press below button to generate</string>
     <string name="digit_null_error">Please enter your password length</string>
     <string name="pwd_max_lengths_error">Your password length must less than 15</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="nav_store">Store</string>
+    <string name="nav_sign_out">Sign out</string>
+    <string name="nav_del_usr">Delete user</string>
+    <string name="nav_del_data">Clear data</string>
+    <string name="action_settings">Settings</string>
 </resources>

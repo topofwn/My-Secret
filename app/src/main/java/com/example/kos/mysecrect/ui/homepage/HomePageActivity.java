@@ -1,9 +1,12 @@
 package com.example.kos.mysecrect.ui.homepage;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -16,47 +19,55 @@ import com.example.kos.mysecrect.ui.login.LoginActivity;
 import com.example.kos.mysecrect.ui.manualgenerate.ManualGenerateActivity;
 import com.example.kos.mysecrect.ui.pwdstore.PWDStoreActivity;
 import com.example.kos.mysecrect.utils.ActivityUtils;
-import com.example.kos.mysecrect.utils.FirebaseUtils;
 import com.example.kos.mysecrect.utils.Injections;
-import com.example.kos.mysecrect.utils.OGILVYLog;
-import com.google.android.gms.ads.identifier.AdvertisingIdClient;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomePageActivity extends BaseActivity implements View.OnClickListener {
+public class HomePageActivity extends BaseActivity implements View.OnClickListener,NavigationView.OnNavigationItemSelectedListener{
     private HomePagePresenter mPresenter = new HomePagePresenter();
-    private Button btnGenerate, btnMykey,btnManual,btnSignOut,btnDelete;
+    private Button btnGenerate,btnManual;
     private FirebaseFirestore db;
     private static final String USER_KEY_DATA = "USER_KEY_DATA" ;
     private UserD user;
+    private DrawerLayout mDrawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
+        setContentView(R.layout.activity_home);
         mPresenter = new HomePagePresenter(Injections.provideSchedulerProvider(),
                 Injections.provideAppDataManager(HomePageActivity.this));
 
-        initView();
+
         mPresenter.onAttach(this);
         mPresenter.onViewInitialized();
+        initView();
         initData();
     }
+
+@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+        case android.R.id.home:
+            if(mDrawerLayout.isDrawerOpen(Gravity.START)){
+                mDrawerLayout.closeDrawer(Gravity.START);
+            }else{
+                mDrawerLayout.openDrawer(Gravity.START);
+            }
+            break;
+
+        default: break;
+
+
+    }
+    return true;
+}
 
 
 
@@ -67,18 +78,17 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
         setSupportActionBar(mToolbar);
         if (getSupportActionBar() != null)  {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_ham);
         }
+        mDrawerLayout = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
         btnGenerate = findViewById(R.id.btn1);
         btnGenerate.setOnClickListener(this);
-        btnMykey = findViewById(R.id.btn2);
-        btnMykey.setOnClickListener(this);
         btnManual = findViewById(R.id.btn3);
         btnManual.setOnClickListener(this);
-        btnSignOut = findViewById(R.id.btn4);
-        btnSignOut.setOnClickListener(this);
-        btnDelete = findViewById(R.id.btn5);
-        btnDelete.setOnClickListener(this);
     }
 
     @Override
@@ -88,7 +98,7 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
              user = (UserD) data.get(USER_KEY_DATA);
         }
         db = FirebaseFirestore.getInstance();
-        List<DataPWD> myArray = new ArrayList<>();
+
 
         showLoading();
         DocumentReference col = db.collection("DataPWd").document(user.getId());
@@ -113,28 +123,10 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
         if(v.getId() == R.id.btn1){
             ActivityUtils.startActivity(HomePageActivity.this,GenerateKeyActivity.class,false,true);
         }
-        else if (v.getId() == R.id.btn2){
-            ActivityUtils.startActivity(HomePageActivity.this, PWDStoreActivity.class,false,true);
-        }
         else if(v.getId() == R.id.btn3){
             ActivityUtils.startActivity(HomePageActivity.this, ManualGenerateActivity.class,false,true);
         }
-        else if(v.getId() == R.id.btn4){
-            FirebaseAuth.getInstance().signOut();
-            ActivityUtils.startActivity(HomePageActivity.this, LoginActivity.class,true,true);
-        }else if(v.getId() == R.id.btn5){
-            FirebaseUser user =  FirebaseAuth.getInstance().getCurrentUser();
-//TODO: delete user failed, unkonwn reason
-             user.delete()
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                               ActivityUtils.startActivity(HomePageActivity.this,LoginActivity.class,true,true);
-                            }
-                        }
-                    });
-        }
+
 
     }
 
@@ -142,5 +134,25 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
     @Override
     public void DismissDialog() {
 
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.nav_store:
+                ActivityUtils.startActivity(HomePageActivity.this,PWDStoreActivity.class,true,true);
+                break;
+            case R.id.nav_sign_out:
+                FirebaseAuth.getInstance().signOut();
+                ActivityUtils.startActivity(HomePageActivity.this,LoginActivity.class,true,true);
+                break;
+            case R.id.nav_del_data:
+                break;
+            case R.id.nav_del_usr:
+                break;
+            default:break;
+        }
+        mDrawerLayout.closeDrawers();
+        return false;
     }
 }
