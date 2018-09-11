@@ -9,6 +9,9 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.example.kos.mysecrect.utils.AppConstants.ENCRYPTED_KEY;
 
 public class FirebaseUtils {
@@ -40,11 +43,8 @@ public class FirebaseUtils {
 
     public static void deleteData(UserD user){
         getInstance();
-        db.collection("DataPWd").document(user.getId()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Log.d("Noti","Deleted Successfully");
-            }
-        });
+        user.setListData(new ArrayList<>());
+        db.collection("DataPWd").document(user.getId()).set(user);
+
     }
 }

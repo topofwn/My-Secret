@@ -35,21 +35,6 @@
 
 
     </android.support.v7.widget.Toolbar>
-</RelativeLayout>
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="200dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_layout"
-        app:menu="@menu/nav_item_menu"
-
-
-         >
-
-    </android.support.design.widget.NavigationView>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -84,5 +69,77 @@
     </LinearLayout>
 
 
+
+</RelativeLayout>
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        android:background="#dd7d5ee2"
+         >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:gravity="center"
+        android:id="@+id/txtHeader"
+        android:background="@drawable/bg_navigation_header"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:text="My header title"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/transparent"
+        android:text="@string/nav_store"
+        android:padding="3dp"
+        android:id="@+id/nav_store"
+        android:drawableStart="@drawable/ic_store_black_24dp"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/transparent"
+        android:text="@string/nav_sign_out"
+        android:padding="3dp"
+        android:layout_marginTop="2dp"
+        android:id="@+id/nav_sign_out"
+        android:drawableStart="@drawable/ic_logout"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/transparent"
+        android:text="@string/nav_del_data"
+        android:padding="3dp"
+        android:layout_marginTop="2dp"
+        android:id="@+id/nav_del_data"
+        android:drawableStart="@drawable/ic_delete_database"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/transparent"
+        android:text="@string/nav_del_usr"
+        android:padding="3dp"
+        android:layout_marginTop="2dp"
+        android:id="@+id/nav_del_usr"
+        android:drawableStart="@drawable/ic_delete_user"
+        />
+</LinearLayout>
+    </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>

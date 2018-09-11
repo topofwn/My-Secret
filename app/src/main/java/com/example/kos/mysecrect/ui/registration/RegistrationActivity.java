@@ -121,6 +121,7 @@ public class RegistrationActivity extends BaseActivity implements View.OnClickLi
     @Override
     public void gotoHomepage() {
         UserD user = new UserD();
+        user.setPw(edtPass.getText().toString());
         user.setEmail(mAuth.getCurrentUser().getEmail());
         user.setId(mAuth.getCurrentUser().getUid());
         List<DataPWD> mArray = new ArrayList<>();

@@ -49,17 +49,10 @@ public class PWDStoreActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                break;
-
-            default:
-                break;
-
-
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed(); // close this activity and return to preview activity (if there is any)
         }
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 
 

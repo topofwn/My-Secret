@@ -7,6 +7,7 @@ import java.util.List;
 public class UserD implements Serializable {
     private String email;
     private String id;
+    private String pw;
     private List<DataPWD> listData;
     private double latng;
     private double longt;
@@ -17,13 +18,23 @@ public class UserD implements Serializable {
         this.listData = new ArrayList<>();
         this.latng = 0;
         this.longt = 0;
+        this.pw = "";
     }
-    public UserD(String id,String email,List<DataPWD> lsdata){
+    public UserD(String id,String email,List<DataPWD> lsdata,String pw){
         this.email = email;
         this.id = id;
         this.listData = lsdata;
         this.latng = 0;
         this.longt = 0;
+        this.pw = pw;
+    }
+
+    public String getPw() {
+        return pw;
+    }
+
+    public void setPw(String pw) {
+        this.pw = pw;
     }
 
     public void setId(String id) {
