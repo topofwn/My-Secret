@@ -84,7 +84,7 @@ public boolean onOptionsItemSelected(MenuItem item) {
 
     @Override
     protected void initView() {
-        //TODO: create navigation view
+
         Toolbar mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         if (getSupportActionBar() != null)  {

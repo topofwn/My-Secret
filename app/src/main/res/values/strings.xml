@@ -16,4 +16,9 @@
     <string name="nav_del_usr">Delete user</string>
     <string name="nav_del_data">Clear data</string>
     <string name="action_settings">Settings</string>
+    <string name="delete_automation">Delete confirm</string>
+    <string name="delete_warning">Do you want to delete?</string>
+    <string name="delete_device_explain">Bạn có muốn xóa thiết bị này khỏi thư viện?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

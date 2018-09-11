@@ -28,7 +28,7 @@
 
         android:layout_centerHorizontal="true"
         >
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="3dp"
@@ -41,7 +41,7 @@
         android:textColor="@color/black"
         android:id="@+id/txtKeyName"
         />
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="3dp"
@@ -80,6 +80,20 @@
         android:textColor="@color/white"
         android:background="@drawable/bg_button_change_state"
         />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnSave"
+            android:layout_below="@+id/btnCrypt"
+            android:layout_centerInParent="true"
+            android:text="Save"
+            android:textSize="15dp"
+            android:padding="5dp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            android:background="@drawable/bg_button_change_state"
+            />
 
     </RelativeLayout>
 </RelativeLayout>

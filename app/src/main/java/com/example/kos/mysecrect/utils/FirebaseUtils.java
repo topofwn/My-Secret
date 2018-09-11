@@ -30,15 +30,11 @@ public class FirebaseUtils {
 
     }
 
-    public static void updateData(String field, String newKey){
+    public static void updateData(UserD user){
         getInstance();
-       DocumentReference doc =  db.collection("DataPWd").document(field);
-       doc.update(ENCRYPTED_KEY,newKey).addOnSuccessListener(new OnSuccessListener<Void>() {
-           @Override
-           public void onSuccess(Void aVoid) {
-               Log.d("Noti","Updated successfully");
-           }
-       });
+       DocumentReference doc =  db.collection("DataPWd").document(user.getId());
+       doc.set(user);
+
     }
 
     public static void deleteData(UserD user){
