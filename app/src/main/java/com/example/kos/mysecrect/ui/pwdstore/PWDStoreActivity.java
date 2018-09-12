@@ -5,22 +5,19 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.PopupMenu;
-import android.widget.Toast;
 
 import com.example.kos.mysecrect.R;
 import com.example.kos.mysecrect.data.model.DataPWD;
+import com.example.kos.mysecrect.data.model.UserD;
 import com.example.kos.mysecrect.ui.base.BaseActivity;
-import com.example.kos.mysecrect.ui.dialog.ConnectionDialog;
+import com.example.kos.mysecrect.ui.dialog.EditDataDialog;
 import com.example.kos.mysecrect.ui.dialog.ShowDataDialog;
-import com.example.kos.mysecrect.ui.dialog.ShowDialogListener;
 import com.example.kos.mysecrect.ui.pwdstore.adapter.PWDStoreAdapter;
+import com.example.kos.mysecrect.utils.FirebaseUtils;
 import com.example.kos.mysecrect.utils.Injections;
 import com.github.javiersantos.bottomdialogs.BottomDialog;
 
@@ -28,7 +25,7 @@ import org.michaelbel.bottomsheet.BottomSheet;
 
 import java.util.List;
 
-public class PWDStoreActivity extends BaseActivity implements View.OnClickListener,ShowDialogListener{
+public class PWDStoreActivity extends BaseActivity implements View.OnClickListener{
     private PWDStorePresenter mPresenter = new PWDStorePresenter();
     private ListView listData;
     private PWDStoreAdapter adapter;
@@ -84,7 +81,7 @@ public class PWDStoreActivity extends BaseActivity implements View.OnClickListen
 
                 ShowDataDialog dialog = null;
                 try {
-                    dialog = new ShowDataDialog(PWDStoreActivity.this,mData,true);
+                    dialog = new ShowDataDialog(PWDStoreActivity.this,mData);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -101,7 +98,11 @@ public class PWDStoreActivity extends BaseActivity implements View.OnClickListen
                     switch (i2) {
                         case 0:
 
-                            EditData(PWDStoreActivity.this,mData);
+                            try {
+                                EditData(mData);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                             break;
                         case 1:
                             new BottomDialog.Builder(PWDStoreActivity.this)
@@ -111,7 +112,7 @@ public class PWDStoreActivity extends BaseActivity implements View.OnClickListen
                                     .setPositiveText(getString(R.string.yes))
                                     .onNegative(BottomDialog::dismiss)
                                     .onPositive(bottomDialog -> {
-                                        //todo remove group and show db
+
                                         DeleteData(mData);
                                         bottomDialog.dismiss();
 
@@ -126,18 +127,43 @@ public class PWDStoreActivity extends BaseActivity implements View.OnClickListen
                 builder.setDarkTheme(true);
                 builder.show();
                 return true;
-                //TODO create popup menu to choose edit or delete item
+
 
             }
         });
     }
 
     private void DeleteData(DataPWD mData) {
-
+        List<DataPWD> mList = mPresenter.getListData();
+        for(int i=0; i<mList.size();i++){
+            if(mList.get(i).getFieldName().equals(mData.getFieldName())){
+                mList.remove(i);
+                break;
+            }
+        }
+        mPresenter.setListData(mList);
+        UserD usr = mPresenter.getUser();
+        usr.setListData(mList);
+        FirebaseUtils.addNewField(usr);
     }
 
-    private void EditData(Context context, DataPWD mData) {
+    private void EditData( DataPWD mData) throws Exception {
         //TODO created popup menu, handling action delete and edit
+        EditDataDialog dialog = new EditDataDialog(PWDStoreActivity.this,mData, (DataPWD newData) ->{
+            List<DataPWD> mList = mPresenter.getListData();
+            for (int i = 0; i<mList.size();i++){
+                if(mList.get(i).getMyKeySpec().equals(newData.getMyKeySpec())){
+                    mList.get(i).setEncrytKey(newData.getEncrytKey());
+                    mList.get(i).setFieldName(newData.getFieldName());
+                    break;
+                }
+            }
+            mPresenter.setListData(mList);
+            UserD usr = mPresenter.getUser();
+            usr.setListData(mList);
+            FirebaseUtils.addNewField(usr);
+        });
+        dialog.show();
     }
 
 
@@ -152,8 +178,5 @@ public class PWDStoreActivity extends BaseActivity implements View.OnClickListen
 
     }
 
-    @Override
-    public void editData(DataPWD data) {
 
-    }
 }

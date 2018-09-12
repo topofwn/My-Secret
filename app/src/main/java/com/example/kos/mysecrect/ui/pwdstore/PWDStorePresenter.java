@@ -39,6 +39,11 @@ public class PWDStorePresenter <V extends PWDStoreContract.View> extends BasePre
     }
 
     @Override
+    public void setListData(List<DataPWD> data) {
+        dataManager.setListData(data);
+    }
+
+    @Override
     public UserD getUser() {
         return dataManager.getUser();
     }

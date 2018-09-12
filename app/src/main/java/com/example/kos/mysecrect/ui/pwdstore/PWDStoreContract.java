@@ -11,7 +11,7 @@ import java.util.List;
 public interface PWDStoreContract {
     interface Presenter<V extends View> extends MVPPresenter<V> {
         List<DataPWD> getListData();
-
+        void setListData(List<DataPWD> data);
         UserD getUser();
         void setUser(UserD user);
 
