@@ -10,6 +10,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.kos.mysecrect.R;
 import com.example.kos.mysecrect.data.model.DataPWD;
@@ -35,8 +36,8 @@ public class ShowDataDialog extends Dialog{
             View v = getWindow().getDecorView();
             v.setBackgroundResource(android.R.color.transparent);
         }
-        EditText txtFieldName = findViewById(R.id.txtKeyName);
-        EditText txtKey = findViewById(R.id.txtYourKey);
+        TextView txtFieldName = findViewById(R.id.txtKeyName);
+        TextView txtKey = findViewById(R.id.txtYourKey);
         txtFieldName.setText(mData.getFieldName());
         txtKey.setText(mData.getEncrytKey());
         Button btnCrypt = findViewById(R.id.btnCrypt);

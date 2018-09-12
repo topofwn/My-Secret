@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.example.kos.mysecrect.R;
 import com.example.kos.mysecrect.data.model.DataPWD;
@@ -20,7 +21,7 @@ public class EditDataDialog extends Dialog{
 private Context mContext;
 private EditDataDialogListener mListener;
 private DataPWD data;
-private String key,name;
+private String key,name,keySpec;
 
     public EditDataDialog(@NonNull Context context, DataPWD mData, EditDataDialogListener listener) throws Exception {
         super(context);
@@ -40,6 +41,7 @@ private String key,name;
         EditText edtName = findViewById(R.id.edtKeyName);
         edtName.setText(data.getFieldName());
         name = data.getFieldName();
+        keySpec = data.getMyKeySpec();
         EditText edtKey = findViewById(R.id.edtYourKey);
         edtKey.setText(EncrytedUtils.Decrypt(data));
         key = EncrytedUtils.Decrypt(data);
@@ -48,7 +50,7 @@ private String key,name;
             @Override
             public void onClick(View v) {
                 if(!edtKey.getText().toString().equals(key) || !edtName.getText().toString().equals(name)){
-                    DataPWD newData = new DataPWD(edtName.getText().toString(),edtKey.getText().toString(),name);
+                    DataPWD newData = new DataPWD(edtName.getText().toString(),edtKey.getText().toString(),keySpec);
                     try {
                         newData = EncrytedUtils.Encrypt(newData);
                     } catch (Exception e) {
@@ -59,6 +61,15 @@ private String key,name;
                 }else {
                     UIUtils.showToast(mContext,"Data doesn't change");
                 }
+            }
+        });
+        ImageButton btnClose = findViewById(R.id.btnClose);
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dismiss();
             }
         });
 

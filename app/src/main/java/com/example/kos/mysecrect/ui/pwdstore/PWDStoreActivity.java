@@ -124,7 +124,7 @@ public class PWDStoreActivity extends BaseActivity implements View.OnClickListen
                     }
                 });
                 builder.setContentType(BottomSheet.LIST);
-                builder.setDarkTheme(true);
+                builder.setDarkTheme(false);
                 builder.show();
                 return true;
 
@@ -145,12 +145,13 @@ public class PWDStoreActivity extends BaseActivity implements View.OnClickListen
         UserD usr = mPresenter.getUser();
         usr.setListData(mList);
         FirebaseUtils.addNewField(usr);
+        adapter.updateData(mList);
     }
 
     private void EditData( DataPWD mData) throws Exception {
         //TODO created popup menu, handling action delete and edit
+        List<DataPWD> mList = mPresenter.getListData();
         EditDataDialog dialog = new EditDataDialog(PWDStoreActivity.this,mData, (DataPWD newData) ->{
-            List<DataPWD> mList = mPresenter.getListData();
             for (int i = 0; i<mList.size();i++){
                 if(mList.get(i).getMyKeySpec().equals(newData.getMyKeySpec())){
                     mList.get(i).setEncrytKey(newData.getEncrytKey());
@@ -164,7 +165,13 @@ public class PWDStoreActivity extends BaseActivity implements View.OnClickListen
             FirebaseUtils.addNewField(usr);
         });
         dialog.show();
+        adapter.updateData(mList);
     }
+@Override
+protected void onResume() {
+    super.onResume();
+}
+
 
 
     @Override

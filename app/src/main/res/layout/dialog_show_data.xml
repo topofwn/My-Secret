@@ -28,11 +28,12 @@
 
         android:layout_centerHorizontal="true"
         >
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="3dp"
         android:clickable="false"
+        android:gravity="center"
         android:text="Key name:"
         android:layout_alignParentTop="true"
         android:layout_marginTop="30dp"
@@ -42,13 +43,14 @@
         android:textColor="@color/black"
         android:id="@+id/txtKeyName"
         />
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="3dp"
         android:text="Your key:"
         android:clickable="false"
         android:background="@color/gray"
+        android:gravity="center"
         android:textSize="18dp"
         android:layout_centerHorizontal= "true"
         android:textColor="@color/black"
