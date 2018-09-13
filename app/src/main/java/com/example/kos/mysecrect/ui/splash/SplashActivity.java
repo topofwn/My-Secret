@@ -81,9 +81,6 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
         }
         else{
            onNoInternetConnection();
-           if (!notifyConnectionDialog.isShowing()) {
-               notifyConnectionDialog.show();
-           }
        }
     }
 
