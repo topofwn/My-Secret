@@ -1,9 +1,7 @@
 package com.example.kos.mysecrect.ui.homepage;
 
 import android.os.Bundle;
-import android.provider.Contacts;
 import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
@@ -28,7 +26,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.EmailAuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -93,7 +90,6 @@ public boolean onOptionsItemSelected(MenuItem item) {
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_ham);
         }
         mDrawerLayout = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
         header = findViewById(R.id.txtHeader);
         btnGenerate = findViewById(R.id.btn1);
         btnGenerate.setOnClickListener(this);

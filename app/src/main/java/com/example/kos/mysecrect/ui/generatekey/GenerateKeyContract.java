@@ -14,7 +14,7 @@ public interface GenerateKeyContract  {
     {
         List<DataPWD> getList();
         void setList(List<DataPWD> data);
-        String getMyDeviceId();
+
         UserD getUser();
         void setUser(UserD user);
     }

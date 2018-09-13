@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MySecrect</string>
+    <string name="app_name">My Secret</string>
     <string name="some_error">Some error occured</string>
     <string name="ms">My Secret</string>
     <string name="press_to_generate">Press below button to generate</string>

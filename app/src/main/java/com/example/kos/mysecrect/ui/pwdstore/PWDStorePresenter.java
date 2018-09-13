@@ -6,13 +6,7 @@ import com.example.kos.mysecrect.data.model.UserD;
 import com.example.kos.mysecrect.ui.base.BasePresenter;
 import com.example.kos.mysecrect.utils.SchedulerProvider;
 
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.PrivateKey;
-import java.security.PublicKey;
 import java.util.List;
-
-import javax.crypto.Cipher;
 
 public class PWDStorePresenter <V extends PWDStoreContract.View> extends BasePresenter<V> implements PWDStoreContract.Presenter<V> {
 

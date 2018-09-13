@@ -1,11 +1,5 @@
 package com.example.kos.mysecrect.ui.splash;
 
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -13,40 +7,25 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.example.kos.mysecrect.R;
-import com.example.kos.mysecrect.data.model.DataPWD;
-import com.example.kos.mysecrect.data.model.UserD;
 import com.example.kos.mysecrect.ui.base.BaseActivity;
-import com.example.kos.mysecrect.ui.homepage.HomePageActivity;
+import com.example.kos.mysecrect.ui.dialog.ConnectionDialog;
 import com.example.kos.mysecrect.ui.login.LoginActivity;
 import com.example.kos.mysecrect.utils.ActivityUtils;
-import com.example.kos.mysecrect.utils.AlertType;
 import com.example.kos.mysecrect.utils.Injections;
-import com.example.kos.mysecrect.utils.MessageType;
 import com.example.kos.mysecrect.utils.OGILVYLog;
-import com.example.kos.mysecrect.utils.UIUtils;
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.common.base.CharMatcher;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class SplashActivity extends BaseActivity implements View.OnClickListener, SplashContract.View {
 
     private SplashPresenter mPresenter = new SplashPresenter();
     private ProgressBar mProgressBar;
-    private FirebaseFirestore db;
+
+    private ConnectionDialog notifyConnectionDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,9 +57,7 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
     @Override
     protected void initData() {
         //TODO: check network connection, build notify dialog
-        if(!isNetworkConnected()){
-            onNoInternetConnection();
-        }else {
+       if(isNetworkConnected()) {
             Handler handler = new Handler();
             handler.post(() -> {
                 Thread tr = new Thread(() -> {
@@ -102,6 +79,12 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
             updateProgressBar(90);
             gotoLogin();
         }
+        else{
+           onNoInternetConnection();
+           if (!notifyConnectionDialog.isShowing()) {
+               notifyConnectionDialog.show();
+           }
+       }
     }
 
 
@@ -125,4 +108,16 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
     public void DismissDialog() {
 
     }
+    @Override
+    public void onNoInternetConnection() {
+        if (notifyConnectionDialog == null) {
+            notifyConnectionDialog = new ConnectionDialog(SplashActivity.this);
+            notifyConnectionDialog.setDialogListener(this);
+        }
+        if (!notifyConnectionDialog.isShowing()) {
+            notifyConnectionDialog.show();
+        }
+    }
+
+
 }

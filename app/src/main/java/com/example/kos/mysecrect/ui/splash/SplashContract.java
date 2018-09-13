@@ -1,7 +1,6 @@
 package com.example.kos.mysecrect.ui.splash;
 
 import com.example.kos.mysecrect.data.model.DataPWD;
-import com.example.kos.mysecrect.data.model.UserD;
 import com.example.kos.mysecrect.ui.base.MVPPresenter;
 import com.example.kos.mysecrect.ui.base.MVPView;
 

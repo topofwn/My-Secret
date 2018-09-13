@@ -35,11 +35,6 @@ public class GenerateKeyPresenter <V extends GenerateKeyContract.View> extends B
     }
 
     @Override
-    public String getMyDeviceId() {
-        return dataManager.getDeviceId();
-    }
-
-    @Override
     public UserD getUser() {
         return dataManager.getUser();
     }

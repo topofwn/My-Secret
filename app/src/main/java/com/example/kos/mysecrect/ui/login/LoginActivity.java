@@ -40,7 +40,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         mPresenter.onAttach(this);
         mPresenter.onViewInitialized();
         mAuth = FirebaseAuth.getInstance();
-        Bundle data =getIntent().getExtras();
+
 
         if (mAuth.getCurrentUser() != null){
            if(mAuth.getCurrentUser().isEmailVerified()) {

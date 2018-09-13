@@ -17,7 +17,6 @@ public class DataManagerImpl implements DataManager {
 
     private static DataManagerImpl mInstance;
 
-    private Context mContext;
 
     private MySnappyImpl mySnappy;
 
