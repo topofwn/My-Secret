@@ -1,6 +1,9 @@
 package com.example.kos.mysecrect.ui.homepage;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
@@ -8,6 +11,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.kos.mysecrect.R;
@@ -20,6 +24,7 @@ import com.example.kos.mysecrect.ui.manualgenerate.ManualGenerateActivity;
 import com.example.kos.mysecrect.ui.pwdstore.PWDStoreActivity;
 import com.example.kos.mysecrect.utils.ActivityUtils;
 import com.example.kos.mysecrect.utils.FirebaseUtils;
+import com.example.kos.mysecrect.utils.IOUtils;
 import com.example.kos.mysecrect.utils.Injections;
 import com.example.kos.mysecrect.utils.UIUtils;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -38,12 +43,14 @@ import java.util.List;
 
 public class HomePageActivity extends BaseActivity implements View.OnClickListener{
     private HomePagePresenter mPresenter = new HomePagePresenter();
-    private Button btnGenerate,btnManual,btnStore,btnSignOut,btnDelAcc,btnClrDb;
+    private Button btnGenerate,btnManual,btnStore,btnSignOut,btnDelAcc,btnClrDb,btnForgot;
     private FirebaseFirestore db;
     private static final String USER_KEY_DATA = "USER_KEY_DATA" ;
     private UserD user;
     private TextView header;
     private DrawerLayout mDrawerLayout;
+    private ImageButton avatar;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +110,10 @@ public boolean onOptionsItemSelected(MenuItem item) {
         btnClrDb.setOnClickListener(this);
         btnDelAcc = findViewById(R.id.nav_del_usr);
         btnDelAcc.setOnClickListener(this);
+        btnForgot = findViewById(R.id.btnforgot);
+        btnForgot.setOnClickListener(this);
+        avatar = findViewById(R.id.imgIcon);
+        avatar.setOnClickListener(this);
 
     }
 
@@ -111,13 +122,15 @@ public boolean onOptionsItemSelected(MenuItem item) {
         Bundle data = this.getIntent().getExtras();
         if(data.get(USER_KEY_DATA) != null){
              user = (UserD) data.get(USER_KEY_DATA);
+             FirebaseUtils.addNewField(user);
         }
         db = FirebaseFirestore.getInstance();
         header.setText(user.getEmail());
+
         showLoading();
-        DocumentReference col = db.collection("DataPWd").document(user.getId());
+        DocumentReference col = db.collection("DATA").document(user.getId());
         col.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
+            @Overrideit
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 UserD user1 = documentSnapshot.toObject(UserD.class);
                 List<DataPWD> mArray = new ArrayList<>();
@@ -128,6 +141,10 @@ public boolean onOptionsItemSelected(MenuItem item) {
                 }
                 mPresenter.setUser(user1);
                 mPresenter.setListData(mArray);
+                if(!user1.getBitmap().equals("")){
+                    avatar.setImageBitmap(IOUtils.decodeBase64ToBitmap(user1.getBitmap()));
+
+                }
                 hideLoading();
             }
         });
@@ -150,11 +167,12 @@ public boolean onOptionsItemSelected(MenuItem item) {
             mDrawerLayout.closeDrawers();
         }else if(v.getId() == R.id.nav_del_data){
             //clear data
-            FirebaseUtils.deleteData(mPresenter.getUser());
+
             mPresenter.setListData(new ArrayList<>());
             UserD mUser = mPresenter.getUser();
             mUser.setListData(new ArrayList<>());
             mPresenter.setUser(mUser);
+            FirebaseUtils.deleteData(mUser);
             UIUtils.showToast(getApplicationContext(),"Data cleaned");
             mDrawerLayout.closeDrawers();
         }else if(v.getId() == R.id. nav_del_usr){
@@ -168,7 +186,7 @@ public boolean onOptionsItemSelected(MenuItem item) {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
                                 UIUtils.showToast(getApplicationContext(),"User deleted");
-                               FirebaseFirestore.getInstance().collection("DataPWd").document(user.getUid()).delete();
+                               FirebaseFirestore.getInstance().collection("DATA").document(user.getUid()).delete();
                                 ActivityUtils.startActivity(HomePageActivity.this,LoginActivity.class,true,true);
                             }
                         }
@@ -177,7 +195,48 @@ public boolean onOptionsItemSelected(MenuItem item) {
                 }
             });
             mDrawerLayout.closeDrawers();
+        }else if(v.getId() == R.id.imgIcon){
+            dispatchTakePictureIntent();
+        }else if(v.getId() == R.id.btnforgot){
+            FirebaseAuth auth = FirebaseAuth.getInstance();
+            String emailAddress = mPresenter.getUser().getEmail();
+
+            auth.sendPasswordResetEmail(emailAddress)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                UIUtils.showToast(HomePageActivity.this,"Sent reset email to your mail. Please check out your inbox");
+                            }
+                        }
+                    });
+            mDrawerLayout.closeDrawers();
         }
+    }
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+
+            updateUserProfile(imageBitmap);
+        }
+    }
+
+    private void updateUserProfile(Bitmap imageBitmap) {
+      UserD user = mPresenter.getUser();
+      user.setBitmap(IOUtils.encodeBitmapToBase64(imageBitmap));
+      avatar.setImageBitmap(imageBitmap);
+      mPresenter.setUser(user);
+      FirebaseUtils.addNewField(user);
     }
 
 

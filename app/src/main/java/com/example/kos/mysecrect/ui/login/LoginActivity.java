@@ -119,8 +119,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     public void gotoHomePage() {
         UserD user = new UserD();
         mAuth = FirebaseAuth.getInstance();
-
-            user.setEmail(mAuth.getCurrentUser().getEmail());
+            user.setPw(edtPass.getText().toString());
+            user.setEmail(edtEmail.getText().toString());
             user.setId(mAuth.getCurrentUser().getUid());
             user.setListData(mPresenter.getListData());
             mPresenter.setUser(user);
