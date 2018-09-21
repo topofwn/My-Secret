@@ -43,7 +43,7 @@ import java.util.List;
 
 public class HomePageActivity extends BaseActivity implements View.OnClickListener{
     private HomePagePresenter mPresenter = new HomePagePresenter();
-    private Button btnGenerate,btnManual,btnStore,btnSignOut,btnDelAcc,btnClrDb,btnForgot;
+    private Button btnGenerate,btnManual,btnStore,btnSignOut,btnDelAcc,btnClrDb;
     private FirebaseFirestore db;
     private static final String USER_KEY_DATA = "USER_KEY_DATA" ;
     private UserD user;
@@ -110,8 +110,7 @@ public boolean onOptionsItemSelected(MenuItem item) {
         btnClrDb.setOnClickListener(this);
         btnDelAcc = findViewById(R.id.nav_del_usr);
         btnDelAcc.setOnClickListener(this);
-        btnForgot = findViewById(R.id.btnforgot);
-        btnForgot.setOnClickListener(this);
+
         avatar = findViewById(R.id.imgIcon);
         avatar.setOnClickListener(this);
 
@@ -197,20 +196,6 @@ public boolean onOptionsItemSelected(MenuItem item) {
             mDrawerLayout.closeDrawers();
         }else if(v.getId() == R.id.imgIcon){
             dispatchTakePictureIntent();
-        }else if(v.getId() == R.id.btnforgot){
-            FirebaseAuth auth = FirebaseAuth.getInstance();
-            String emailAddress = mPresenter.getUser().getEmail();
-
-            auth.sendPasswordResetEmail(emailAddress)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                UIUtils.showToast(HomePageActivity.this,"Sent reset email to your mail. Please check out your inbox");
-                            }
-                        }
-                    });
-            mDrawerLayout.closeDrawers();
         }
     }
 

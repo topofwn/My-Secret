@@ -158,17 +158,7 @@
         android:id="@+id/nav_del_usr"
         android:drawableStart="@drawable/ic_delete_user"
         />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/transparent"
-        android:text="@string/nav_forgot"
-        android:padding="3dp"
-        android:layout_marginTop="2dp"
-        android:id="@+id/btnforgot"
-        android:drawableStart="@drawable/ic_forgot"
-        />
+
 </LinearLayout>
     </android.support.design.widget.NavigationView>
 

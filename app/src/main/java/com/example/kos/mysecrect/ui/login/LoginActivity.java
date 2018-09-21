@@ -1,5 +1,6 @@
 package com.example.kos.mysecrect.ui.login;
 
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -7,10 +8,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.kos.mysecrect.R;
 import com.example.kos.mysecrect.data.model.UserD;
 import com.example.kos.mysecrect.ui.base.BaseActivity;
+import com.example.kos.mysecrect.ui.forgotpwd.ForgotPwdActivity;
 import com.example.kos.mysecrect.ui.homepage.HomePageActivity;
 import com.example.kos.mysecrect.ui.registration.RegistrationActivity;
 import com.example.kos.mysecrect.utils.ActivityUtils;
@@ -27,6 +30,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private EditText edtEmail, edtPass;
     private Button btnSignIn,btnSignUp;
     private FirebaseAuth mAuth;
+    private TextView txtForgot;
     private static final String USER_KEY_DATA = "USER_KEY_DATA" ;
 
     @Override
@@ -61,6 +65,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         }else if(v.getId() == R.id.btnSignIn){
             hideKeyboard();
             SignInWithEmailAndPass();
+        }else if(v.getId() == R.id.txtForgotpwd){
+            ActivityUtils.startActivity(LoginActivity.this, ForgotPwdActivity.class,false,true);
         }
     }
 
@@ -102,7 +108,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         btnSignUp = findViewById(R.id.btnSignUp);
         btnSignUp.setOnClickListener(this);
         btnSignIn.setOnClickListener(this);
-
+        txtForgot = findViewById(R.id.txtForgotpwd);
+        txtForgot.setPaintFlags(txtForgot.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
+        txtForgot.setOnClickListener(this);
     }
 
     @Override
