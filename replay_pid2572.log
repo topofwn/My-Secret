@@ -1,0 +1,12 @@
+JvmtiExport can_access_local_variables 0
+JvmtiExport can_hotswap_or_post_breakpoint 0
+JvmtiExport can_post_on_exceptions 0
+# 293 ciObject found
+ciMethod java/lang/Object <init> ()V 4097 1 721150 0 -1
+ciMethod java/lang/Object clone ()Ljava/lang/Object; 2049 1 256 0 -1
+instanceKlass org/codehaus/groovy/control/ErrorCollector
+instanceKlass org/codehaus/groovy/control/CompilerConfiguration
+instanceKlass org/codehaus/groovy/control/ProcessingUnit
+instanceKlass org/codehaus/groovy/runtime/ReflectionMethodInvoker
+instanceKlass groovy/transform/Immutable
+instanceKlass org/codehaus/groovy/ast/CodeVisitorSupport
