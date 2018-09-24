@@ -1,7 +1,10 @@
 package com.example.kos.mysecrect.ui.homepage;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -40,6 +43,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.Manifest.permission.CAMERA;
 
 public class HomePageActivity extends BaseActivity implements View.OnClickListener{
     private HomePagePresenter mPresenter = new HomePagePresenter();
@@ -195,7 +200,13 @@ public boolean onOptionsItemSelected(MenuItem item) {
             });
             mDrawerLayout.closeDrawers();
         }else if(v.getId() == R.id.imgIcon){
-            dispatchTakePictureIntent();
+            if (hasPermission(CAMERA)) {
+                if(checkSelfPermission(CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                    dispatchTakePictureIntent();
+                }else{
+                    requestPermissionsSafely(new String[]{CAMERA},REQUEST_IMAGE_CAPTURE );
+                }
+            }
         }
     }
 
