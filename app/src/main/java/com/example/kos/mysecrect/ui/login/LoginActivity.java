@@ -46,11 +46,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         mAuth = FirebaseAuth.getInstance();
 
 
-        if (mAuth.getCurrentUser() != null){
-           if(mAuth.getCurrentUser().isEmailVerified()) {
-               gotoHomePage();
-           }
-        }
+
         initData();
     }
 

@@ -51,6 +51,7 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
     private HomePagePresenter mPresenter = new HomePagePresenter();
     private Button btnGenerate, btnManual, btnStore, btnSignOut, btnDelAcc, btnClrDb;
     private FirebaseFirestore db;
+    private FirebaseAuth mAuth;
     private UserD user;
     private TextView header;
     private DrawerLayout mDrawerLayout;
@@ -92,9 +93,7 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
     protected void onResume() {
         super.onResume();
         UserD usr = mPresenter.getUser();
-        if(!usr.getBitmap().equals("")) {
-            avatar.setImageBitmap(IOUtils.decodeBase64ToBitmap(usr.getBitmap()));
-        }
+        updateUI(usr);
     }
 
 
@@ -132,16 +131,17 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void initData() {
-        Bundle data = this.getIntent().getExtras();
-        if (data.get(USER_KEY_DATA) != null) {
-            user = (UserD) data.get(USER_KEY_DATA);
-            FirebaseUtils.addNewField(user);
-        }
+//        Bundle data = this.getIntent().getExtras();
+//        if (data.get(USER_KEY_DATA) != null) {
+//            user = (UserD) data.get(USER_KEY_DATA);
+//            FirebaseUtils.addNewField(user);
+//        }
+//        db = FirebaseFirestore.getInstance();
+//        header.setText(user.getEmail());
         db = FirebaseFirestore.getInstance();
-        header.setText(user.getEmail());
-
+        mAuth = FirebaseAuth.getInstance();
         showLoading();
-        DocumentReference col = db.collection("DATA").document(user.getId());
+        DocumentReference col = db.collection("DATA").document(mAuth.getUid());
         col.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -154,11 +154,18 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
                 }
                 mPresenter.setUser(user1);
                 mPresenter.setListData(mArray);
-
+                updateUI(user1);
                 hideLoading();
             }
         });
 
+    }
+
+    private void updateUI(UserD user1) {
+        if(!user1.getBitmap().equals("")) {
+            avatar.setImageBitmap(IOUtils.decodeBase64ToBitmap(user1.getBitmap()));
+        }
+        header.setText(user1.getEmail());
     }
 
     @Override
@@ -228,6 +235,7 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
+
             updateUserProfile(imageBitmap);
         }
     }

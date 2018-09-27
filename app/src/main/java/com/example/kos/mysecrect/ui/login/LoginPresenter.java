@@ -10,7 +10,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.List;
 
 public class LoginPresenter<V extends LoginContract.View> extends BasePresenter<V> implements LoginContract.Presenter<V> {
-    private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth ;
 
     public LoginPresenter(SchedulerProvider schedulerProvider, DataManager dataManager) {
         super(schedulerProvider, dataManager);
@@ -24,7 +24,12 @@ public class LoginPresenter<V extends LoginContract.View> extends BasePresenter<
     @Override
     public void onViewInitialized() {
         super.onViewInitialized();
-
+        mAuth = FirebaseAuth.getInstance();
+        if (mAuth.getCurrentUser() != null){
+            if(mAuth.getCurrentUser().isEmailVerified()) {
+                getMvpView().gotoHomePage();
+            }
+        }
     }
 
 
