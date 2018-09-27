@@ -89,14 +89,13 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
         }
         return true;
     }
+
     @Override
     protected void onResume() {
         super.onResume();
         UserD usr = mPresenter.getUser();
         updateUI(usr);
     }
-
-
 
 
     @Override
@@ -151,10 +150,11 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
                     if (user1.getListData() != null) {
                         mArray = user1.getListData();
                     }
+                    mPresenter.setUser(user1);
+                    mPresenter.setListData(mArray);
+                    updateUI(user1);
                 }
-                mPresenter.setUser(user1);
-                mPresenter.setListData(mArray);
-                updateUI(user1);
+
                 hideLoading();
             }
         });
@@ -162,7 +162,7 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void updateUI(UserD user1) {
-        if(!user1.getBitmap().equals("")) {
+        if (!user1.getBitmap().equals("")) {
             avatar.setImageBitmap(IOUtils.decodeBase64ToBitmap(user1.getBitmap()));
         }
         header.setText(user1.getEmail());
