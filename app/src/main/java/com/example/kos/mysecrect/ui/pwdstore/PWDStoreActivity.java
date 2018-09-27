@@ -23,7 +23,7 @@ import org.michaelbel.bottomsheet.BottomSheet;
 
 import java.util.List;
 
-public class PWDStoreActivity extends BaseActivity implements View.OnClickListener{
+public class PWDStoreActivity extends BaseActivity implements View.OnClickListener {
     private PWDStorePresenter mPresenter = new PWDStorePresenter();
     private ListView listData;
     private PWDStoreAdapter adapter;
@@ -41,9 +41,6 @@ public class PWDStoreActivity extends BaseActivity implements View.OnClickListen
         mPresenter.onViewInitialized();
         initData();
     }
-
-
-
 
 
     @Override
@@ -70,7 +67,7 @@ public class PWDStoreActivity extends BaseActivity implements View.OnClickListen
         }
         List<DataPWD> lData = mPresenter.getListData();
         listData = findViewById(R.id.lv_data);
-        adapter = new PWDStoreAdapter(getApplicationContext(),R.layout.item_data,lData);
+        adapter = new PWDStoreAdapter(getApplicationContext(), R.layout.item_data, lData);
         listData.setAdapter(adapter);
         listData.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -79,7 +76,7 @@ public class PWDStoreActivity extends BaseActivity implements View.OnClickListen
 
                 ShowDataDialog dialog = null;
                 try {
-                    dialog = new ShowDataDialog(PWDStoreActivity.this,mData);
+                    dialog = new ShowDataDialog(PWDStoreActivity.this, mData);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -117,7 +114,8 @@ public class PWDStoreActivity extends BaseActivity implements View.OnClickListen
                                     })
                                     .show();
                             break;
-                        default:break;
+                        default:
+                            break;
 
                     }
                 });
@@ -133,8 +131,8 @@ public class PWDStoreActivity extends BaseActivity implements View.OnClickListen
 
     private void DeleteData(DataPWD mData) {
         List<DataPWD> mList = mPresenter.getListData();
-        for(int i=0; i<mList.size();i++){
-            if(mList.get(i).getFieldName().equals(mData.getFieldName())){
+        for (int i = 0; i < mList.size(); i++) {
+            if (mList.get(i).getFieldName().equals(mData.getFieldName())) {
                 mList.remove(i);
                 break;
             }
@@ -146,12 +144,12 @@ public class PWDStoreActivity extends BaseActivity implements View.OnClickListen
         adapter.updateData(mList);
     }
 
-    private void EditData( DataPWD mData) throws Exception {
+    private void EditData(DataPWD mData) throws Exception {
         //TODO created popup menu, handling action delete and edit
         List<DataPWD> mList = mPresenter.getListData();
-        EditDataDialog dialog = new EditDataDialog(PWDStoreActivity.this,mData, (DataPWD newData) ->{
-            for (int i = 0; i<mList.size();i++){
-                if(mList.get(i).getMyKeySpec().equals(newData.getMyKeySpec())){
+        EditDataDialog dialog = new EditDataDialog(PWDStoreActivity.this, mData, (DataPWD newData) -> {
+            for (int i = 0; i < mList.size(); i++) {
+                if (mList.get(i).getMyKeySpec().equals(newData.getMyKeySpec())) {
                     mList.get(i).setEncrytKey(newData.getEncrytKey());
                     mList.get(i).setFieldName(newData.getFieldName());
                     break;
@@ -165,11 +163,11 @@ public class PWDStoreActivity extends BaseActivity implements View.OnClickListen
         dialog.show();
         adapter.updateData(mList);
     }
-@Override
-protected void onResume() {
-    super.onResume();
-}
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
 
     @Override

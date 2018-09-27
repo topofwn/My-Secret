@@ -1,6 +1,5 @@
 package com.example.kos.mysecrect.ui.homepage;
 
-import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -46,16 +45,16 @@ import java.util.List;
 
 import static android.Manifest.permission.CAMERA;
 
-public class HomePageActivity extends BaseActivity implements View.OnClickListener{
+public class HomePageActivity extends BaseActivity implements View.OnClickListener {
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final String USER_KEY_DATA = "USER_KEY_DATA";
     private HomePagePresenter mPresenter = new HomePagePresenter();
-    private Button btnGenerate,btnManual,btnStore,btnSignOut,btnDelAcc,btnClrDb;
+    private Button btnGenerate, btnManual, btnStore, btnSignOut, btnDelAcc, btnClrDb;
     private FirebaseFirestore db;
-    private static final String USER_KEY_DATA = "USER_KEY_DATA" ;
     private UserD user;
     private TextView header;
     private DrawerLayout mDrawerLayout;
     private ImageButton avatar;
-    static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,23 +70,33 @@ public class HomePageActivity extends BaseActivity implements View.OnClickListen
         initData();
     }
 
-@Override
-public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-        case android.R.id.home:
-            if(mDrawerLayout.isDrawerOpen(Gravity.START)){
-                mDrawerLayout.closeDrawer(Gravity.START);
-            }else{
-                mDrawerLayout.openDrawer(Gravity.START);
-            }
-            break;
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                if (mDrawerLayout.isDrawerOpen(Gravity.START)) {
+                    mDrawerLayout.closeDrawer(Gravity.START);
+                } else {
+                    mDrawerLayout.openDrawer(Gravity.START);
+                }
+                break;
 
-        default: break;
+            default:
+                break;
 
 
+        }
+        return true;
     }
-    return true;
-}
+    @Override
+    protected void onResume() {
+        super.onResume();
+        UserD usr = mPresenter.getUser();
+        if(!usr.getBitmap().equals("")) {
+            avatar.setImageBitmap(IOUtils.decodeBase64ToBitmap(usr.getBitmap()));
+        }
+    }
+
 
 
 
@@ -96,7 +105,7 @@ public boolean onOptionsItemSelected(MenuItem item) {
 
         Toolbar mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-        if (getSupportActionBar() != null)  {
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_ham);
@@ -124,9 +133,9 @@ public boolean onOptionsItemSelected(MenuItem item) {
     @Override
     protected void initData() {
         Bundle data = this.getIntent().getExtras();
-        if(data.get(USER_KEY_DATA) != null){
-             user = (UserD) data.get(USER_KEY_DATA);
-             FirebaseUtils.addNewField(user);
+        if (data.get(USER_KEY_DATA) != null) {
+            user = (UserD) data.get(USER_KEY_DATA);
+            FirebaseUtils.addNewField(user);
         }
         db = FirebaseFirestore.getInstance();
         header.setText(user.getEmail());
@@ -138,17 +147,14 @@ public boolean onOptionsItemSelected(MenuItem item) {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 UserD user1 = documentSnapshot.toObject(UserD.class);
                 List<DataPWD> mArray = new ArrayList<>();
-                if(user1 != null){
-                    if(user1.getListData() != null) {
+                if (user1 != null) {
+                    if (user1.getListData() != null) {
                         mArray = user1.getListData();
                     }
                 }
                 mPresenter.setUser(user1);
                 mPresenter.setListData(mArray);
-                if(!user1.getBitmap().equals("")){
-                    avatar.setImageBitmap(IOUtils.decodeBase64ToBitmap(user1.getBitmap()));
 
-                }
                 hideLoading();
             }
         });
@@ -157,19 +163,18 @@ public boolean onOptionsItemSelected(MenuItem item) {
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.btn1){
-            ActivityUtils.startActivity(HomePageActivity.this,GenerateKeyActivity.class,false,true);
-        }
-        else if(v.getId() == R.id.btn3){
-            ActivityUtils.startActivity(HomePageActivity.this, ManualGenerateActivity.class,false,true);
-        }else if(v.getId() == R.id.nav_store){
-            ActivityUtils.startActivity(HomePageActivity.this,PWDStoreActivity.class,false,true);
+        if (v.getId() == R.id.btn1) {
+            ActivityUtils.startActivity(HomePageActivity.this, GenerateKeyActivity.class, false, true);
+        } else if (v.getId() == R.id.btn3) {
+            ActivityUtils.startActivity(HomePageActivity.this, ManualGenerateActivity.class, false, true);
+        } else if (v.getId() == R.id.nav_store) {
+            ActivityUtils.startActivity(HomePageActivity.this, PWDStoreActivity.class, false, true);
             mDrawerLayout.closeDrawers();
-        }else if(v.getId() == R.id.nav_sign_out){
+        } else if (v.getId() == R.id.nav_sign_out) {
             FirebaseAuth.getInstance().signOut();
-            ActivityUtils.startActivity(HomePageActivity.this,LoginActivity.class,true,true);
+            ActivityUtils.startActivity(HomePageActivity.this, LoginActivity.class, true, true);
             mDrawerLayout.closeDrawers();
-        }else if(v.getId() == R.id.nav_del_data){
+        } else if (v.getId() == R.id.nav_del_data) {
             //clear data
 
             mPresenter.setListData(new ArrayList<>());
@@ -177,11 +182,11 @@ public boolean onOptionsItemSelected(MenuItem item) {
             mUser.setListData(new ArrayList<>());
             mPresenter.setUser(mUser);
             FirebaseUtils.deleteData(mUser);
-            UIUtils.showToast(getApplicationContext(),"Data cleaned");
+            UIUtils.showToast(getApplicationContext(), "Data cleaned");
             mDrawerLayout.closeDrawers();
-        }else if(v.getId() == R.id. nav_del_usr){
+        } else if (v.getId() == R.id.nav_del_usr) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            AuthCredential credential = EmailAuthProvider.getCredential(mPresenter.getUser().getEmail(),mPresenter.getUser().getPw());
+            AuthCredential credential = EmailAuthProvider.getCredential(mPresenter.getUser().getEmail(), mPresenter.getUser().getPw());
             user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
@@ -189,9 +194,9 @@ public boolean onOptionsItemSelected(MenuItem item) {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                UIUtils.showToast(getApplicationContext(),"User deleted");
-                               FirebaseFirestore.getInstance().collection("DATA").document(user.getUid()).delete();
-                                ActivityUtils.startActivity(HomePageActivity.this,LoginActivity.class,true,true);
+                                UIUtils.showToast(getApplicationContext(), "User deleted");
+                                FirebaseFirestore.getInstance().collection("DATA").document(user.getUid()).delete();
+                                ActivityUtils.startActivity(HomePageActivity.this, LoginActivity.class, true, true);
                             }
                         }
                     });
@@ -199,12 +204,12 @@ public boolean onOptionsItemSelected(MenuItem item) {
                 }
             });
             mDrawerLayout.closeDrawers();
-        }else if(v.getId() == R.id.imgIcon){
-            if (hasPermission(CAMERA)) {
-                if(checkSelfPermission(CAMERA) == PackageManager.PERMISSION_GRANTED) {
+        } else if (v.getId() == R.id.imgIcon) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (checkSelfPermission(CAMERA) == PackageManager.PERMISSION_GRANTED) {
                     dispatchTakePictureIntent();
-                }else{
-                    requestPermissionsSafely(new String[]{CAMERA},REQUEST_IMAGE_CAPTURE );
+                } else {
+                    requestPermissionsSafely(new String[]{CAMERA}, REQUEST_IMAGE_CAPTURE);
                 }
             }
         }
@@ -216,23 +221,23 @@ public boolean onOptionsItemSelected(MenuItem item) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-
             updateUserProfile(imageBitmap);
         }
     }
 
     private void updateUserProfile(Bitmap imageBitmap) {
-      UserD user = mPresenter.getUser();
-      user.setBitmap(IOUtils.encodeBitmapToBase64(imageBitmap));
-      avatar.setImageBitmap(imageBitmap);
-      mPresenter.setUser(user);
-      FirebaseUtils.addNewField(user);
+        UserD user = mPresenter.getUser();
+        user.setBitmap(IOUtils.encodeBitmapToBase64(imageBitmap));
+        avatar.setImageBitmap(imageBitmap);
+        mPresenter.setUser(user);
+        FirebaseUtils.addNewField(user);
     }
 
 

@@ -21,6 +21,7 @@ public class HomePagePresenter <V extends HomePageContract.View> extends BasePre
     @Override
     public void onViewInitialized() {
         super.onViewInitialized();
+
     }
 
 
